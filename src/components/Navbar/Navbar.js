@@ -19,7 +19,10 @@ const NavWrapper = styled.section`
 
 const NabLogo = styled.section`
   color: white;
-  font-size: 23px;
+  font-size: 40px;
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-style: italic;
 `;
 
 export default function Nabvar() {

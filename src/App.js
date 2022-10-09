@@ -1,5 +1,5 @@
 import "./App.css";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes, BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./styles/GlobalStyles";
 
 // compoenets
@@ -24,13 +24,15 @@ function App() {
     <>
       <GlobalStyle />
       <div className="App">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="login" element={<LogIn />} />
-            <Route path="signup" element={<SignUp />} />
-          </Route>
-        </Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="login" element={<LogIn />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   );

@@ -44,26 +44,24 @@ export const GlobalStyle = createGlobalStyle`
         .App {
           width: 375px;
           height: 100vh;
-          font-family: 'Montserrat', sans-serif;
-          font-weight : 900;
-
+          font-family: 'Montserrat';
+          font-style: normal;
         }
       }
       @media only screen and (min-width: 360px) {
         .App {
           width: 360px;
           height: 100vh;
-          font-family: 'Montserrat', sans-serif;
-          font-weight : 900;
+          font-family: 'Montserrat';
+          font-style: normal;
         }
       }
       @media only screen and (min-width: 280px) {
         .App {
           width: 280px;
           height: 100vh;
-          font-family: 'Montserrat', sans-serif;
-          font-weight : 900;
-
+          font-family: 'Montserrat';
+          font-style: normal;
           & > {
             float: left;
           }
