@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
 const NavWrapper = styled.section`
-  position: fixed;
+  position: static;
   display: flex;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 113px;
   z-index: 10;
   background-color: ${pointColor};

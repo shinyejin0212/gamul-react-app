@@ -12,10 +12,10 @@ import SignUp from "./pages/Sign/SignUp";
 
 const Layout = () => {
   return (
-    <div>
+    <header>
       <Navbar />
       <Outlet />
-    </div>
+    </header>
   );
 };
 
