@@ -15,6 +15,7 @@ const NavWrapper = styled.section`
   box-shadow: 0.1px 0.1px 3px #b3b3b3;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const NabLogo = styled.section`
