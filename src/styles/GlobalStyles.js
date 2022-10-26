@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
         background-color: #FFF;
         align-items: center;
-        // margin-top: 113px;
+
     }
 
 
