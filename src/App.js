@@ -12,10 +12,12 @@ import SignUp from "./pages/Sign/SignUp";
 
 const Layout = () => {
   return (
-    <div>
-      <Navbar />
+    <>
+      <header>
+        <Navbar />
+      </header>
       <Outlet />
-    </div>
+    </>
   );
 };
 
@@ -27,9 +29,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
+              {/* <div className="body"> */}
               <Route index element={<Home />} />
               <Route path="login" element={<LogIn />} />
               <Route path="signup" element={<SignUp />} />
+              {/* </div> */}
             </Route>
           </Routes>
         </BrowserRouter>
