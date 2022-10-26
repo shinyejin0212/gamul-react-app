@@ -7,6 +7,7 @@ const NavWrapper = styled.section`
   display: flex;
   top: 0;
   width: 100vw;
+  max-width: 375px;
   height: 113px;
   z-index: 10;
   background-color: ${pointColor};
@@ -21,7 +22,7 @@ const NavWrapper = styled.section`
 const NabLogo = styled.section`
   color: white;
   font-size: 40px;
-  font-family: "Montserrat";
+  // font-family: "Montserrat";
   font-weight: 900;
   font-style: italic;
 `;

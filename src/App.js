@@ -15,7 +15,6 @@ const Layout = () => {
     <>
       <header>
         <Navbar />
-        <hr></hr>
       </header>
       <Outlet />
     </>
@@ -30,9 +29,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
+              {/* <div className="body"> */}
               <Route index element={<Home />} />
               <Route path="login" element={<LogIn />} />
               <Route path="signup" element={<SignUp />} />
+              {/* </div> */}
             </Route>
           </Routes>
         </BrowserRouter>
