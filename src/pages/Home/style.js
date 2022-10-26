@@ -6,12 +6,15 @@ export const HomeAlign = styled.div`
   flex-direction: column;
   position: relative;
   display: flex;
+  font-weight: 500;
+  font-style: oblique;
 `;
 export const MainLogo = styled.img`
   flex-direction: column;
   width: 80vw;
   max-width: 313px;
   height: auto;
+  margin-top: 44px;
 `;
 
 export const StartButton = styled.button`
@@ -25,7 +28,7 @@ export const StartButton = styled.button`
   font-size: 22px;
   background-color: ${pointColor};
   color: white;
-  font-weight: 900;
+  font-weight: 600;
   border-radius: 12px;
   border: 0;
   outline: 0;

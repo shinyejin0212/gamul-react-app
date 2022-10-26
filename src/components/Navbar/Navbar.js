@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
 const NavWrapper = styled.section`
-  position: static;
-  display: flex;
   top: 0;
   width: 100vw;
   max-width: 375px;
@@ -31,6 +31,26 @@ export default function Nabvar() {
   return (
     <div>
       <NavWrapper>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{
+              width: "20px",
+              height: "20px",
+              color: "white",
+              // float: "right",
+              // align: "right",
+              marginRight: "10px",
+              marginTop: "12.1px",
+            }}
+            // onClick = {}
+          />
+        </div>
         <NabLogo>GAMUL</NabLogo>
       </NavWrapper>
     </div>
