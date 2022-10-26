@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-export const pointColor = "#F39C4B";
+export const pointColor = "#FF914D";
 
 export const setScreenSize = () => {
   let vh = window.innerHeight * 0.01;
@@ -20,24 +20,18 @@ export const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
         box-sizing: border-box;
     }
-    
-    @font-face {
-        font-family: 'NanumSquareRound';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+
 
     body {
-      position : fixed;
+        position:absolute;
         width: 100vw;
-        height: calc(var(--vh, 1vh) * 100);        
+        // height: calc(var(--vh, 1vh) * 100);        
         overflow-y: scroll;
         margin: 0;
         display: flex;
         justify-content: center;
         background-color: #FFF;
-        // align-items: center;
+        align-items: center;
         // margin-top: 113px;
     }
 
@@ -48,14 +42,19 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
       }
       
-      @media only screen and (max-width: 375px) and (min-width: 279px) { //375px 너무 작아서 수정했음
+      @media only screen and  (min-width: 279px) { //375px 너무 작아서 수정했음
+        // (max-width: 600px) and
         .App {
+          position:relative
           width: 100vw;
           height: calc(var(--vh, 1vh) * 100);
-          font-family: 'Montserrat';
-          font-style: normal;
+          font-family: 'Montserrat', sans-serif;
+
+          & > {
+            float: left;
+          }
         }
       }
-
+      
 
 `;
