@@ -18,20 +18,17 @@ export const MainLogo = styled.img`
 `;
 
 export const StartButton = styled.button`
-  flex-direction: column;
-  display: flex;
-  align-items: center;
   justify-content: center;
   width: 50vw;
   height: 44px;
   max-width: 200px;
-  font-size: 22px;
+  font-size: 20px;
   background-color: ${pointColor};
   color: white;
   font-weight: 600;
   border-radius: 12px;
   border: 0;
   outline: 0;
-  box-shadow: 4px 4px 8px #b3b3b3;
+  box-shadow: 2px 2px 4px #b3b3b3;
   margin: 44px;
 `;

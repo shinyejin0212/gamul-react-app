@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
         background-color: #FFF;
         align-items: center;
-        // margin-top: 113px;
+
     }
 
 
@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
         .App {
           position:relative
           width: 100vw;
-          height: calc(var(--vh, 1vh) * 100);
+          height: calc(var(--vh, 1vh) * 100)vh;
           font-family: 'Montserrat', sans-serif;
 
           & > {
