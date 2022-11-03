@@ -43,7 +43,7 @@ export default function Nabvar() {
             // marginTop: "12.1px",
             // marginRight: "10vw",
             paddingTop: "10px",
-            paddingRight: "10px",
+            paddingRight: "15px",
           }}
           // onClick = {}
         />

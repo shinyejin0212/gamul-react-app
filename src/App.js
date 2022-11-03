@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
+import Main from "./pages/Main/Main";
 
 const Layout = () => {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="login" element={<LogIn />} />
               <Route path="signup" element={<SignUp />} />
+              <Route path="main" element={<Main />} />
               {/* </div> */}
             </Route>
           </Routes>

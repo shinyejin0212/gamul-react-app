@@ -13,9 +13,9 @@ export default function Home() {
       />
       <StartButton>시작하기</StartButton>
       <div>
-        Already have an account? -
-        <Link to="/login" style={{ marginLeft: "5px", color: "#4B70F3" }}>
-          Login
+        Create account -
+        <Link to="/signup" style={{ marginLeft: "5px", color: "#4B70F3" }}>
+          SignUp
         </Link>
       </div>
     </HomeAlign>
