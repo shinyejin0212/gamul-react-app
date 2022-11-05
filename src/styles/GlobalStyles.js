@@ -26,7 +26,8 @@ export const GlobalStyle = createGlobalStyle`
         position:absolute;
         width: 100vw;
         // height: calc(var(--vh, 1vh) * 100);        
-        overflow-y: scroll;
+        overflow-x: hidden;
+        overflow-y: hidden;
         margin: 0;
         display: flex;
         justify-content: center;
