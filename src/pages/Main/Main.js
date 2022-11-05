@@ -70,13 +70,9 @@ function main() {
         <br />
         선택하세요
       </Title>
-      <SelectButton title="시험하기" />
-      <OrangeButton>
-        <CartIcon
-          alt="cart_icon"
-          src={cart_icon}
-          onClick={() => (window.location.href = "/")} /* 수정필요 */
-        />
+      <SelectButton title="마트 선택하기" />
+      <OrangeButton onClick={() => (window.location.href = "/")} /* 수정필요 */>
+        <CartIcon alt="cart_icon" src={cart_icon} />
         <br />
         Go {">"}
         {">"}
@@ -84,12 +80,8 @@ function main() {
       </OrangeButton>
       <br />
       <br />
-      <GrayButton>
-        <BagIcon
-          alt="bag_icon"
-          src={bag_icon}
-          onClick={() => (window.location.href = "/")} /* 수정필요 */
-        />
+      <GrayButton onClick={() => (window.location.href = "/")} /* 수정필요 */>
+        <BagIcon alt="bag_icon" src={bag_icon} />
         <br />
         Go {">"}
         {">"}
