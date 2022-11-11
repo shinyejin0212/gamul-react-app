@@ -33,9 +33,36 @@ function KakaoMap() {
         position: marker_position,
         title: market.marekt_name,
         image: null,
-        clickable: true,
+        clickable: true, //마커 클릭시 지도의 클릭 이벤트 발생하지 않게
       });
       marker.setMap(kakaoMap);
+
+      //인포 윈도우
+      let infowindow = new kakao.maps.InfoWindow({
+        content: market.address, //
+      });
+      kakao.maps.event.addListener(
+        marker,
+        "mouseover",
+        makeOverListener(kakaoMap, marker, infowindow)
+      );
+      kakao.maps.event.addListener(
+        marker,
+        "mouseout",
+        makeOutListener(infowindow)
+      );
+
+      function makeOverListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      }
     });
   });
 
