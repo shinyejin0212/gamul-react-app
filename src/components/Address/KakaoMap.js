@@ -1,16 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import { marketdata } from "../../data/MarketInfo";
+import useGeoLocation from "../../hooks/useGeolocation.tsx";
 
 function KakaoMap() {
   const { kakao } = window;
   const [kakaoMap, setKakaoMap] = useState(null);
   const mapContainer = useRef(null);
+  const currentLocation = useGeoLocation();
 
   const initMap = () => {
-    const center = new kakao.maps.LatLng(37.57096169, 126.9984922);
+    const center = currentLocation.loaded
+      ? new kakao.maps.LatLng(
+          currentLocation.coordinates.lat,
+          currentLocation.coordinates.lng
+        )
+      : new kakao.maps.LatLng(37.57096169, 126.9984922);
+
     const options = {
       center,
-      level: 8,
+      level: 2,
     };
     const map = new kakao.maps.Map(mapContainer.current, options);
     setKakaoMap(map);
@@ -22,8 +30,6 @@ function KakaoMap() {
 
   marketdata.forEach((gu) => {
     gu.market.forEach((market) => {
-      console.log(market.latitude, market.longitude);
-
       let marker_position = new kakao.maps.LatLng(
         market.latitude,
         market.longitude
