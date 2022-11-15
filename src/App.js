@@ -10,6 +10,7 @@ import Home from "./pages/Home/Home";
 import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
+import ObjectDetection from "./pages/Camera/ObjectDetection";
 
 const Layout = () => {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="login" element={<LogIn />} />
               <Route path="signup" element={<SignUp />} />
               <Route path="main" element={<Main />} />
+              <Route path="object_detection" element={<ObjectDetection />} />
               {/* </div> */}
             </Route>
           </Routes>

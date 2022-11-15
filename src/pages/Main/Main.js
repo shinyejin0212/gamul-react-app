@@ -138,7 +138,11 @@ function Main() {
         마트 선택하기
       </Button>
       <br></br>
-      <OrangeButton onClick={() => (window.location.href = "/")} /* 수정필요 */>
+      <OrangeButton
+        onClick={() =>
+          (window.location.href = "/object_detection")
+        } /* 수정필요 */
+      >
         <CartIcon alt="cart_icon" src={cart_icon} />
         <br />
         Go {">"}
