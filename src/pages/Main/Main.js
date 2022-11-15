@@ -1,6 +1,6 @@
 import React from "react";
 import { Title } from "../../styles/styles";
-import SelectButton from "../../components/Button/SelectButton";
+import BottomSheet from "../../components/Address/BottomSheet";
 
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
@@ -9,12 +9,9 @@ import bag_icon from "../../assets/icons/bag_icon.png";
 import cart_icon from "../../assets/icons/cart_icon.png";
 
 //mui
-import PropTypes from "prop-types";
 import { Global } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
-import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 
@@ -137,7 +134,6 @@ function Main() {
         선택하세요
       </Title>
       <br></br>
-      {/* <SelectButton title="마트 선택하기" onClick={toggleDrawer(true)} /> */}
       <Button onClick={toggleDrawer(true)} sx={Buttonstyle}>
         마트 선택하기
       </Button>
@@ -195,7 +191,7 @@ function Main() {
           }}
         >
           <br></br>
-          <>주소설정</>
+          <BottomSheet />
           {/* <Skeleton variant="rectangular" height="5px" /> */}
           {/* 여기에 주소 검색이랑 list 등등 */}
         </StyledBox>

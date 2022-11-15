@@ -10,7 +10,6 @@ import Home from "./pages/Home/Home";
 import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
-import SelectStoreMap from "./pages/Map/SelectStoreMap";
 
 const Layout = () => {
   return (
@@ -36,7 +35,6 @@ function App() {
               <Route path="login" element={<LogIn />} />
               <Route path="signup" element={<SignUp />} />
               <Route path="main" element={<Main />} />
-              <Route path="map" element={<SelectStoreMap />} />
               {/* </div> */}
             </Route>
           </Routes>

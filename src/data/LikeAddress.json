@@ -1,0 +1,18 @@
+{
+  "LikeAddressList": [
+    {
+      "id": 0,
+      "title": "동국대학교",
+      "address": "서울특별시 중구 필동로 1길 30",
+      "latitude": "37.5585916",
+      "lontitude": "126.9997567"
+    },
+    {
+      "id": 1,
+      "title": "동국대학교222",
+      "address": "서울특별시 어쩔티비",
+      "latitude": "37.5585916",
+      "lontitude": "126.9997567"
+    }
+  ]
+}
