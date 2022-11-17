@@ -7,10 +7,10 @@ import AddressList from "./AddressList";
 
 const { kakao } = window;
 
-function BottomSheet() {
+function BottomSheet(open) {
   const currentLocation = useGeoLocation();
   const navigate = useNavigate();
-  const [flag, setflag] = useState(0);
+  const [flag, setflag] = useState(!open);
   const onClickCurrent = () => {
     setflag(1);
   };

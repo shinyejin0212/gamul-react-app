@@ -23,18 +23,17 @@ const Buttonstyle = {
   borderRadius: "12px",
 };
 const { kakao } = window;
-function KakaoMap(props) {
+function KakaoMap(position) {
   const [kakaoMap, setKakaoMap] = useState(null);
-  const [marker, setMarker] = useState(null);
   const mapContainer = useRef(null);
 
   const current_position = () => {
     // 지도에 표시할 원을 생성합니다
     var circle = new kakao.maps.Circle({
-      center: props.location.loaded
+      center: position.location.loaded
         ? new kakao.maps.LatLng(
-            props.location.coordinates.lat,
-            props.location.coordinates.lng
+            position.location.coordinates.lat,
+            position.location.coordinates.lng
           )
         : new kakao.maps.LatLng(37.57096169, 126.9984922),
 
@@ -64,8 +63,8 @@ function KakaoMap(props) {
 
     let marker = new kakao.maps.Marker({
       position: new kakao.maps.LatLng(
-        props.location.coordinates.lat,
-        props.location.coordinates.lng
+        position.location.coordinates.lat,
+        position.location.coordinates.lng
       ),
       title: "내 위치",
       image: markerImage,
@@ -74,15 +73,11 @@ function KakaoMap(props) {
     marker.setMap(kakaoMap);
   };
 
-  // useEffect(() => {
-  //   current_position();
-  // });
-
   const initMap = () => {
-    const center = props.location.loaded
+    const center = position.location.loaded
       ? new kakao.maps.LatLng(
-          props.location.coordinates.lat,
-          props.location.coordinates.lng
+          position.location.coordinates.lat,
+          position.location.coordinates.lng
         )
       : new kakao.maps.LatLng(37.57096169, 126.9984922);
 
@@ -94,31 +89,37 @@ function KakaoMap(props) {
     setKakaoMap(map);
   };
 
-  const createMarker = () => {
-    marketdata.forEach((gu) => {
-      gu.market.forEach((market) => {
-        let marker_position = new kakao.maps.LatLng(
-          market.latitude,
-          market.longitude
-        );
+  const getMarker = () => {
+    marketdata.forEach((market) => {
+      let marker_position = new kakao.maps.LatLng(
+        market.latitude,
+        market.longitude
+      );
 
-        let marker = new kakao.maps.Marker({
-          position: marker_position,
-          title: market.marekt_name,
-          image: null,
-          clickable: true, //마커 클릭시 지도의 클릭 이벤트 발생하지 않게
-        });
-        marker.setMap(kakaoMap);
+      let marker = new kakao.maps.Marker({
+        position: marker_position,
+        title: market.marekt_name,
+        image: null,
+        clickable: true, //마커 클릭시 지도의 클릭 이벤트 발생하지 않게
+      });
+      marker.setMap(kakaoMap);
+
+      kakao.maps.event.addListener(marker, "click", function () {
+        sendTitle(marker.Gb);
       });
     });
+  };
+  const [title, setTitle] = useState("");
+  const sendTitle = (title) => {
+    console.log(title); //title임
   };
 
   useEffect(() => {
     initMap();
-  }, [props.location.loaded]);
+  }, [position.location.loaded]);
 
   useEffect(() => {
-    createMarker();
+    getMarker();
     current_position();
   }, [kakaoMap]);
 

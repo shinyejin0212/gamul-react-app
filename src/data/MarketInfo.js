@@ -1,33 +1,29 @@
 export const marketdata = [
   {
-    gu_name: "종로구",
-    market: [
-      {
-        marekt_name: "광장시장",
-        latitude: 37.57096169,
-        longitude: 126.9984922,
-        address: "광장시장 어쩌구임",
-      },
-      {
-        marekt_name: "통인시장",
-        latitude: 37.58076792,
-        longitude: 126.9700215,
-        address: "통인시장 어쩌구임",
-      },
-      {
-        marekt_name: "롯데백화점 명동본점",
-        latitude: 37.56498489,
-        longitude: 126.9817768,
-        address: "롯데백화점 어쩌구임",
-      },
-      {
-        marekt_name: "신세계백화점 본점",
-        latitude: 37.56094111,
-        longitude: 126.9810851,
-        address: "신세계백화점 어쩌구임",
-      },
-    ],
+    marekt_name: "광장시장",
+    latitude: 37.57096169,
+    longitude: 126.9984922,
+    address: "광장시장 어쩌구임",
   },
+  {
+    marekt_name: "통인시장",
+    latitude: 37.58076792,
+    longitude: 126.9700215,
+    address: "통인시장 어쩌구임",
+  },
+  {
+    marekt_name: "롯데백화점 명동본점",
+    latitude: 37.56498489,
+    longitude: 126.9817768,
+    address: "롯데백화점 어쩌구임",
+  },
+  {
+    marekt_name: "신세계백화점 본점",
+    latitude: 37.56094111,
+    longitude: 126.9810851,
+    address: "신세계백화점 어쩌구임",
+  },
+
   // {
   //   gu_name: "중구",
   //   market: [],

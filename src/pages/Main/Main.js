@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Title } from "../../styles/styles";
 import BottomSheet from "../../components/Address/BottomSheet";
 
@@ -108,7 +108,7 @@ const Puller = styled(Box)(() => ({
 }));
 
 function Main() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -195,7 +195,7 @@ function Main() {
           }}
         >
           <br></br>
-          <BottomSheet />
+          <BottomSheet open={open} />
           {/* <Skeleton variant="rectangular" height="5px" /> */}
           {/* 여기에 주소 검색이랑 list 등등 */}
         </StyledBox>
