@@ -112,8 +112,8 @@ function KakaoMap(position) {
   const [title, setTitle] = useState("");
   const sendTitle = (title) => {
     console.log(title); //title임
+    setTitle(title);
   };
-
   useEffect(() => {
     initMap();
   }, [position.location.loaded]);
@@ -133,6 +133,7 @@ function KakaoMap(position) {
         ref={mapContainer}
         style={{ width: "349px", height: "298px", borderRadius: "12px" }}
       ></div>
+      {title}
     </>
   );
 }
