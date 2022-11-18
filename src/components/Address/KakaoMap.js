@@ -122,8 +122,8 @@ function KakaoMap(position) {
   //   setTitle(title);
   // };
 
-  const sendTitle = () => {
-    dispatch(sendMarket());
+  const sendTitle = (new_title) => {
+    dispatch(sendMarket(new_title));
   };
 
   useEffect(() => {

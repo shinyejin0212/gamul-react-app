@@ -1,9 +1,13 @@
-const initialState = 5;
+const initialState = "";
 
-const selectmarkerReducer = (state = 5, action) => {
+const selectmarkerReducer = (state = initialState, action) => {
   switch (action.type) {
     case "마커클릭":
-      return state + 1;
+      state = action.market_title;
+      return state;
+    case "마켓선택":
+      state = action.market_title;
+      return state;
     default:
       return state;
   }

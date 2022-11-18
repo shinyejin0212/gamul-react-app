@@ -10,14 +10,16 @@ export const decrement = () => {
   };
 };
 
-export const selectMarket = () => {
+export const selectMarket = (market_title) => {
   return {
     type: "마트 지도 선택",
+    market_title,
   };
 };
 
-export const sendMarket = () => {
+export const sendMarket = (market_title) => {
   return {
     type: "마커클릭",
+    market_title,
   };
 };

@@ -17,10 +17,12 @@ function BottomSheet(open) {
   };
 
   const counter = useSelector((state) => state.counterReducer);
+  const selectMarker = useSelector((state) => state.selectmarkerReducer);
   const dispatch = useDispatch();
 
   const onClickChoice = () => {
-    dispatch(selectMarket());
+    dispatch(selectMarket(selectMarker));
+    setMarket(selectMarker);
   };
 
   const onIncrease = () => {
@@ -44,8 +46,9 @@ function BottomSheet(open) {
   ) : (
     <>
       <KakaoMap location={currentLocation} />
-      {market}
+      <br></br>
       <Button onClick={onClickChoice}>선택</Button>
+      {market} 이 선택되었습니다.
     </>
   );
 }
