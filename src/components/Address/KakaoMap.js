@@ -26,6 +26,7 @@ const { kakao } = window;
 function KakaoMap(position) {
   const [kakaoMap, setKakaoMap] = useState(null);
   const mapContainer = useRef(null);
+  const [title, setTitle] = useState();
 
   const current_position = () => {
     // 지도에 표시할 원을 생성합니다
@@ -105,15 +106,16 @@ function KakaoMap(position) {
       marker.setMap(kakaoMap);
 
       kakao.maps.event.addListener(marker, "click", function () {
-        sendTitle(marker.Gb);
+        setTitle(marker.Gb);
       });
     });
   };
-  const [title, setTitle] = useState("");
-  const sendTitle = (title) => {
-    console.log(title); //title임
-    setTitle(title);
-  };
+
+  // const sendTitle = (title) => {
+  //   console.log(title); //title임
+  //   setTitle(title);
+  // };
+
   useEffect(() => {
     initMap();
   }, [position.location.loaded]);
@@ -133,7 +135,7 @@ function KakaoMap(position) {
         ref={mapContainer}
         style={{ width: "349px", height: "298px", borderRadius: "12px" }}
       ></div>
-      {title}
+      {/* {title} */}
     </>
   );
 }

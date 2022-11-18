@@ -30,7 +30,7 @@ function BottomSheet(open) {
   ) : (
     <>
       <KakaoMap location={currentLocation} />
-
+      {market}
       <Button onClick={onClickChoice}>선택</Button>
     </>
   );
