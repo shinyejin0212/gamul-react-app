@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddressCard({ key, title, address, latitude, lontitude }) {
+function AddressCard({ title, address, latitude, lontitude }) {
   return (
     <>
       <div> {title}</div>

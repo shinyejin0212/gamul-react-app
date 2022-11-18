@@ -3,6 +3,9 @@ import { marketdata } from "../../data/MarketInfo";
 import { Button } from "@mui/material";
 import { pointColor } from "../../styles/GlobalStyles";
 
+import { useSelector, useDispatch } from "react-redux";
+import { sendMarket } from "../../actions/action";
+
 const Buttonstyle = {
   fontSize: "16p",
   backgroundColor: "white",
@@ -90,6 +93,9 @@ function KakaoMap(position) {
     setKakaoMap(map);
   };
 
+  const selectMarker = useSelector((state) => state.selectmarkerReducer);
+  const dispatch = useDispatch();
+
   const getMarker = () => {
     marketdata.forEach((market) => {
       let marker_position = new kakao.maps.LatLng(
@@ -106,7 +112,7 @@ function KakaoMap(position) {
       marker.setMap(kakaoMap);
 
       kakao.maps.event.addListener(marker, "click", function () {
-        setTitle(marker.Gb);
+        sendTitle(marker.Gb);
       });
     });
   };
@@ -115,6 +121,10 @@ function KakaoMap(position) {
   //   console.log(title); //title임
   //   setTitle(title);
   // };
+
+  const sendTitle = () => {
+    dispatch(sendMarket());
+  };
 
   useEffect(() => {
     initMap();
@@ -135,7 +145,7 @@ function KakaoMap(position) {
         ref={mapContainer}
         style={{ width: "349px", height: "298px", borderRadius: "12px" }}
       ></div>
-      {/* {title} */}
+      {selectMarker}
     </>
   );
 }

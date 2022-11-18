@@ -2,7 +2,6 @@ import React from "react";
 import dummy from "../../data/LikeAddress.json";
 import AddressCard from "./AddressCard";
 export default function AddressList() {
-  console.log(dummy.LikeAddressList[0].title);
   return (
     <>
       {dummy.LikeAddressList.map((LikeAddress) => (
