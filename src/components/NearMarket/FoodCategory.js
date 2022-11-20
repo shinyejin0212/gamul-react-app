@@ -40,18 +40,22 @@ const BOxStyle = {
   height: "49px",
 
   textAlign: "center",
+  display: "flex",
 };
 
 const MoneyStyle = {
   fontSize: "16px",
-  backgroundColor: "white",
-  height: "49px",
+  backgroundColor: "red",
+  height: "45px",
   lineHeight: "49px",
   fontWeight: "900",
   fontSize: "14px",
   fontStyle: "italic",
   width: "85px",
   textAlign: "center",
+  margin: "2px",
+  marginRight: "10px",
+  marginLeft: "10px",
 };
 
 function FoodCategory({ props }) {
@@ -66,6 +70,8 @@ function FoodCategory({ props }) {
     >
       <div style={FoodStyle}>{props}</div>
       <div style={BOxStyle}>
+        <div style={MoneyStyle}>50,000원</div>{" "}
+        <div style={MoneyStyle}>50,000원</div>{" "}
         <div style={MoneyStyle}>50,000원</div>
       </div>
     </div>

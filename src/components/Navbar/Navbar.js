@@ -14,7 +14,7 @@ const NavWrapper = styled.section`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 0.1px 0.1px 3px #b3b3b3;
-  position: fixed;
+  // position: fixed;
   // flex-direction: column;
   display: static;
 `;
