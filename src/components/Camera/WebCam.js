@@ -42,7 +42,7 @@ function WebCam() {
           <Webcam
             style={{ width: "338px", height: "496px" }}
             imageSmoothing={true}
-            screenshotFormat="image/webp"
+            screenshotFormat="image/jpg"
             ref={webcamRef}
             // videoConstraints={videoConstraints} //후면 카메라 사용
           />
@@ -57,9 +57,11 @@ function WebCam() {
             alt="screenshot"
             style={{ width: "338px", height: "auto" }}
           />
+
           <div>
             <Button onClick={() => setImg(null)}>Retake</Button>
           </div>
+          {console.log(img)}
         </>
       )}
     </div>

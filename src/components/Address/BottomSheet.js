@@ -13,7 +13,7 @@ import {
   MoveMap,
 } from "../../actions/action";
 
-function BottomSheet(open) {
+function BottomSheet() {
   const currentLocation = useGeoLocation();
   const [market, setMarket] = useState(null);
 

@@ -222,7 +222,7 @@ function Main() {
           }}
         >
           <br></br>
-          <BottomSheet open={open} />
+          <BottomSheet />
           {/* <Skeleton variant="rectangular" height="5px" /> */}
           {/* 여기에 주소 검색이랑 list 등등 */}
         </StyledBox>

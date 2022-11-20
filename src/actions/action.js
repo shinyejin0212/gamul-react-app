@@ -37,3 +37,17 @@ export const MoveMap = () => {
     flag: true,
   };
 };
+
+export const setImageBase24 = (imagebase24) => {
+  return {
+    tyep: "base24이미지저장",
+    imagebase24,
+  };
+};
+
+export const setImageForm = (imageform) => {
+  return {
+    tyep: "Form이미지저장",
+    imageform,
+  };
+};
