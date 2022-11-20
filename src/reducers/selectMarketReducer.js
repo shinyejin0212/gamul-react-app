@@ -1,13 +1,12 @@
 const initialState = "";
 
-const selectmarkerReducer = (state = initialState, action) => {
+const selectMarketReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "마커클릭":
+    case "마켓선택":
       state = action.market_title;
       return state;
-
     default:
       return state;
   }
 };
-export default selectmarkerReducer;
+export default selectMarketReducer;

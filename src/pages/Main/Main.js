@@ -7,6 +7,8 @@ import { pointColor } from "../../styles/GlobalStyles";
 
 import bag_icon from "../../assets/icons/bag_icon.png";
 import cart_icon from "../../assets/icons/cart_icon.png";
+import bag_icon_disable from "../../assets/icons/bag_icon_disable.png";
+import cart_icon_disable from "../../assets/icons/cart_icon_disable.png";
 
 //mui
 import { Global } from "@emotion/react";
@@ -15,49 +17,51 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 
-const OrangeButton = styled.button`
-  font-size: 16px;
-  background-color: #ffdeca;
-  color: ${pointColor};
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 0;
-  outline: 0;
-  box-shadow: 2px 2px 4px #b3b3b3;
-  margin-top: 12px;
-  width: 70vw;
-  max-width: 254px;
-  height: 254px;
-  max-height: 25vh;
-  border-radius: 12px;
+// redux
+import { useSelector } from "react-redux";
 
-  text-decoration: underline;
-`;
+// const OrangeButtonStyle = {
+//   fontSize: "16px",
 
-const GrayButton = styled.button`
-  font-size: 16px;
-  background-color: #f9f7f5;
-  color: #828282;
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 0;
-  outline: 0;
-  box-shadow: 2px 2px 4px #b3b3b3;
-  margin-top: 12px;
-  width: 70vw;
-  max-width: 254px;
-  height: 111px;
-  max-height: 15vh;
-  border-radius: 12px;
+//   color: "${pointColor}",
+//   fontWeight: "600",
+//   fontSize: "16px",
+//   borderRadius: "12px",
+//   border: "0",
+//   outline: "0",
+//   boxShadow: "2px 2px 4px #b3b3b3",
+//   marginTop: "12px",
+//   width: "70vw",
+//   maxWidth: "254px",
+//   height: "254px",
+//   maxHeight: "25vh",
+//   borderRadius: "12px",
+//   textDecoration: "underline",
+// };
 
-  text-decoration: underline;
-`;
+// const GrayButtonStyle = {
+//   fontSize: "16px",
+//   backgroundColor: "#f9f7f5",
+//   color: "#828282",
+//   fontWeight: "600",
+//   fontSize: "16px",
+//   borderRadius: "12px",
+//   border: "0",
+//   outline: "0",
+//   boxShadow: "2px 2px 4px #b3b3b3",
+//   marginTop: "12px",
+//   width: "70vw",
+//   maxWidth: "254px",
+//   height: "150px",
+//   maxHeight: "15vh",
+//   borderRadius: "12px",
+
+//   textDecoration: "underline",
+// };
 
 export const BagIcon = styled.img`
-  width: 40px;
-  margin: 10px;
+  width: 50px;
+  margin: 0px;
 `;
 
 export const CartIcon = styled.img`
@@ -109,7 +113,9 @@ const Puller = styled(Box)(() => ({
 
 function Main() {
   const [open, setOpen] = useState(false);
-
+  const selectMarker = useSelector((state) => state.selectMarketReducer);
+  const position = selectMarker ? selectMarker : "마트 선택하기";
+  const disabled = selectMarker ? false : true;
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -134,30 +140,106 @@ function Main() {
         선택하세요
       </Title>
       <br></br>
-      <Button onClick={toggleDrawer(true)} sx={Buttonstyle}>
-        마트 선택하기
+      <Button
+        onClick={toggleDrawer(true)}
+        sx={{
+          fontSize: "16p",
+          backgroundColor: selectMarker ? "white" : pointColor,
+          color: selectMarker ? pointColor : "white",
+          fontWeight: "900",
+          fontSize: "14px",
+          fontStyle: "italic",
+
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
+
+          marginTop: "12px",
+          marginBottom: "12px",
+          width: "162px",
+          height: "30px",
+          borderRadius: "12px",
+        }}
+      >
+        {position}
       </Button>
       <br></br>
-      <OrangeButton
+      <Button
+        sx={{
+          fontSize: "16px",
+          backgroundColor: selectMarker ? "#ffdeca" : "white",
+          color: "${pointColor}",
+          fontWeight: "600",
+          fontSize: "16px",
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
+          marginTop: "12px",
+          width: "70vw",
+          maxWidth: "254px",
+          height: "254px",
+          maxHeight: "25vh",
+          borderRadius: "12px",
+          textDecoration: "underline",
+        }}
+        disabled={disabled}
         onClick={() =>
           (window.location.href = "/object_detection")
         } /* 수정필요 */
       >
-        <CartIcon alt="cart_icon" src={cart_icon} />
-        <br />
-        Go {">"}
-        {">"}
-        {">"}
-      </OrangeButton>
+        <div>
+          {selectMarker ? (
+            <CartIcon alt="cart_icon" src={cart_icon} />
+          ) : (
+            <CartIcon alt="cart_icon_disable" src={cart_icon_disable} />
+          )}
+          <div>
+            Go {">"}
+            {">"}
+            {">"}
+          </div>
+        </div>
+      </Button>
       <br />
       <br />
-      <GrayButton onClick={() => (window.location.href = "/")} /* 수정필요 */>
-        <BagIcon alt="bag_icon" src={bag_icon} />
-        <br />
-        Go {">"}
-        {">"}
-        {">"}
-      </GrayButton>
+      <Button
+        sx={{
+          fontSize: "16px",
+          backgroundColor: selectMarker ? "#f9f7f5" : "white",
+          color: "#828282",
+          fontWeight: "600",
+          fontSize: "16px",
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
+          marginTop: "12px",
+          width: "70vw",
+          maxWidth: "254px",
+          height: "150px",
+          maxHeight: "15vh",
+          borderRadius: "12px",
+
+          textDecoration: "underline",
+        }}
+        disabled={disabled}
+        onClick={() => (window.location.href = "/")} /* 수정필요 */
+      >
+        <div>
+          {selectMarker ? (
+            <BagIcon alt="bag_icon" src={bag_icon} />
+          ) : (
+            <BagIcon alt="bag_icon_disable" src={bag_icon_disable} />
+          )}
+          <div>
+            Go {">"}
+            {">"}
+            {">"}
+          </div>
+        </div>
+      </Button>
 
       <SwipeableDrawer
         anchor="bottom"
