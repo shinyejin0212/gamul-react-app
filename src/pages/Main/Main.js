@@ -113,9 +113,9 @@ const Puller = styled(Box)(() => ({
 
 function Main() {
   const [open, setOpen] = useState(false);
-  const selectMarker = useSelector((state) => state.selectMarketReducer);
-  const position = selectMarker ? selectMarker : "마트 선택하기";
-  const disabled = selectMarker ? false : true;
+  const selectedMarket = useSelector((state) => state.selectMarketReducer);
+  const position = selectedMarket ? selectedMarket : "마트 선택하기";
+  const disabled = selectedMarket ? false : true;
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -144,8 +144,8 @@ function Main() {
         onClick={toggleDrawer(true)}
         sx={{
           fontSize: "16p",
-          backgroundColor: selectMarker ? "white" : pointColor,
-          color: selectMarker ? pointColor : "white",
+          backgroundColor: selectedMarket ? "white" : pointColor,
+          color: selectedMarket ? pointColor : "white",
           fontWeight: "900",
           fontSize: "14px",
           fontStyle: "italic",
@@ -168,7 +168,7 @@ function Main() {
       <Button
         sx={{
           fontSize: "16px",
-          backgroundColor: selectMarker ? "#ffdeca" : "white",
+          backgroundColor: selectedMarket ? "#ffdeca" : "white",
           color: "${pointColor}",
           fontWeight: "600",
           fontSize: "16px",
@@ -190,7 +190,7 @@ function Main() {
         } /* 수정필요 */
       >
         <div>
-          {selectMarker ? (
+          {selectedMarket ? (
             <CartIcon alt="cart_icon" src={cart_icon} />
           ) : (
             <CartIcon alt="cart_icon_disable" src={cart_icon_disable} />
@@ -207,7 +207,7 @@ function Main() {
       <Button
         sx={{
           fontSize: "16px",
-          backgroundColor: selectMarker ? "#f9f7f5" : "white",
+          backgroundColor: selectedMarket ? "#f9f7f5" : "white",
           color: "#828282",
           fontWeight: "600",
           fontSize: "16px",
@@ -228,7 +228,7 @@ function Main() {
         onClick={() => (window.location.href = "/")} /* 수정필요 */
       >
         <div>
-          {selectMarker ? (
+          {selectedMarket ? (
             <BagIcon alt="bag_icon" src={bag_icon} />
           ) : (
             <BagIcon alt="bag_icon_disable" src={bag_icon_disable} />

@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import counterReducer from "./counterReducer";
-import selectmarkerReducer from "./selectmarkerReducer";
+import clickMarkerReducer from "./clickMarkerReducer";
 import selectMarketReducer from "./selectMarketReducer";
 
 const rootReducer = combineReducers({
   counterReducer,
-  selectmarkerReducer,
+  clickMarkerReducer,
   selectMarketReducer,
 });
 export default rootReducer;

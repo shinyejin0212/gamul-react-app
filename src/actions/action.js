@@ -10,16 +10,16 @@ export const decrement = () => {
   };
 };
 
-export const selectMarket = (market_title) => {
+export const sendMarket = (market_title) => {
   return {
-    type: "마트 지도 선택",
+    type: "마커클릭",
     market_title,
   };
 };
 
-export const sendMarket = (market_title) => {
+export const selectMarket = (market_title) => {
   return {
-    type: "마커클릭",
+    type: "마켓선택",
     market_title,
   };
 };

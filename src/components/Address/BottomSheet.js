@@ -17,12 +17,14 @@ function BottomSheet(open) {
   };
 
   const counter = useSelector((state) => state.counterReducer);
-  const selectMarker = useSelector((state) => state.selectmarkerReducer);
+  const clickMarker = useSelector((state) => state.clickMarkerReducer);
+  const selectedMarket = useSelector((state) => state.selectMarketReducer);
+
   const dispatch = useDispatch();
 
   const onClickChoice = () => {
-    dispatch(selectMarket(selectMarker));
-    setMarket(selectMarker);
+    dispatch(selectMarket(clickMarker));
+    setMarket(selectedMarket);
   };
 
   const onIncrease = () => {

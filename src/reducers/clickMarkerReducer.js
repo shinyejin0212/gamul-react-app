@@ -1,6 +1,6 @@
 const initialState = "";
 
-const selectmarkerReducer = (state = initialState, action) => {
+const clickMarkerReducer = (state = initialState, action) => {
   switch (action.type) {
     case "마커클릭":
       state = action.market_title;
@@ -10,4 +10,4 @@ const selectmarkerReducer = (state = initialState, action) => {
       return state;
   }
 };
-export default selectmarkerReducer;
+export default clickMarkerReducer;
