@@ -13,14 +13,14 @@ const FoodStyle = {
   outline: "0",
   boxShadow: "0.5px 0.5px 0.5px 0.1px #b3b3b3",
 
-  width: "70px",
+  width: "50vw",
+  maxWidth: "60px",
   height: "49px",
 
   borderTopLeftRadius: "12px",
   borderBottomLeftRadius: "12px",
-
+  lineHeight: "49px",
   textAlign: "center",
-  padding: "12px",
 };
 
 const BOxStyle = {
@@ -35,8 +35,8 @@ const BOxStyle = {
   outline: "0",
   boxShadow: "0.5px 0.5px 0.5px 0.1px #b3b3b3",
 
-  width: "50vw",
-  maxWidth: "250px",
+  width: "80vw",
+  maxWidth: "275px",
   height: "49px",
 
   textAlign: "center",
@@ -46,14 +46,24 @@ const MoneyStyle = {
   fontSize: "16px",
   backgroundColor: "white",
   height: "49px",
-
+  lineHeight: "49px",
+  fontWeight: "900",
+  fontSize: "14px",
+  fontStyle: "italic",
+  width: "85px",
   textAlign: "center",
-  padding: "12px",
 };
 
 function FoodCategory({ props }) {
   return (
-    <div style={{ display: "flex", margin: "10px" }}>
+    <div
+      style={{
+        display: "flex",
+        margin: "10px",
+        width: "95vw",
+        maxWidth: "335px",
+      }}
+    >
       <div style={FoodStyle}>{props}</div>
       <div style={BOxStyle}>
         <div style={MoneyStyle}>50,000원</div>
