@@ -11,6 +11,7 @@ import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
 import ObjectDetection from "./pages/Camera/ObjectDetection";
+import NearMarketList from "./pages/NearMarket/nearMartList";
 
 const Layout = () => {
   return (
@@ -37,6 +38,8 @@ function App() {
               <Route path="signup" element={<SignUp />} />
               <Route path="main" element={<Main />} />
               <Route path="object_detection" element={<ObjectDetection />} />
+              <Route path="near_market_list" element={<NearMarketList />} />
+
               {/* </div> */}
             </Route>
           </Routes>

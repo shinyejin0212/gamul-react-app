@@ -5,25 +5,32 @@ import KakaoMap from "./KakaoMap";
 import useGeoLocation from "../../hooks/useGeolocation.tsx";
 import AddressList from "./AddressList";
 
-import { increment, decrement, selectMarket } from "../../actions/action";
+import {
+  increment,
+  decrement,
+  selectMarket,
+  MoveBookMark,
+  MoveMap,
+} from "../../actions/action";
 
 function BottomSheet(open) {
   const currentLocation = useGeoLocation();
-  const [flag, setflag] = useState(!open);
   const [market, setMarket] = useState(null);
 
   const onClickCurrent = () => {
-    setflag(1);
+    dispatch(MoveMap());
   };
 
   const counter = useSelector((state) => state.counterReducer);
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
+  const move = useSelector((state) => state.BookMarkOrMapReducer);
 
   const dispatch = useDispatch();
 
   const onClickChoice = () => {
     dispatch(selectMarket(clickMarker));
+    dispatch(MoveBookMark());
     setMarket(selectedMarket);
   };
 
@@ -35,9 +42,10 @@ function BottomSheet(open) {
     dispatch(decrement());
   };
 
-  return flag == 1 ? ( //0으로 바꿔야함
+  return move == false ? (
     <>
       <div>주소설정</div>
+      {market} {/*수정 해야함  */}
       <Button onClick={onClickCurrent}>현재 위치로 설정</Button>
       <hr></hr>
       <AddressList />

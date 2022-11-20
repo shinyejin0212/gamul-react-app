@@ -18,46 +18,8 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 
 // redux
-import { useSelector } from "react-redux";
-
-// const OrangeButtonStyle = {
-//   fontSize: "16px",
-
-//   color: "${pointColor}",
-//   fontWeight: "600",
-//   fontSize: "16px",
-//   borderRadius: "12px",
-//   border: "0",
-//   outline: "0",
-//   boxShadow: "2px 2px 4px #b3b3b3",
-//   marginTop: "12px",
-//   width: "70vw",
-//   maxWidth: "254px",
-//   height: "254px",
-//   maxHeight: "25vh",
-//   borderRadius: "12px",
-//   textDecoration: "underline",
-// };
-
-// const GrayButtonStyle = {
-//   fontSize: "16px",
-//   backgroundColor: "#f9f7f5",
-//   color: "#828282",
-//   fontWeight: "600",
-//   fontSize: "16px",
-//   borderRadius: "12px",
-//   border: "0",
-//   outline: "0",
-//   boxShadow: "2px 2px 4px #b3b3b3",
-//   marginTop: "12px",
-//   width: "70vw",
-//   maxWidth: "254px",
-//   height: "150px",
-//   maxHeight: "15vh",
-//   borderRadius: "12px",
-
-//   textDecoration: "underline",
-// };
+import { useSelector, useDispatch } from "react-redux";
+import { MoveBookMark, MoveMap } from "../../actions/action";
 
 export const BagIcon = styled.img`
   width: 50px;
@@ -72,26 +34,6 @@ export const CartIcon = styled.img`
   //   height: auto;
   //   margin-top: 44px;
 `;
-
-const Buttonstyle = {
-  fontSize: "16p",
-  backgroundColor: "white",
-  color: pointColor,
-  fontWeight: "900",
-  fontSize: "14px",
-  fontStyle: "italic",
-
-  borderRadius: "12px",
-  border: "0",
-  outline: "0",
-  boxShadow: "2px 2px 4px #b3b3b3",
-
-  marginTop: "12px",
-  marginBottom: "12px",
-  width: "162px",
-  height: "30px",
-  borderRadius: "12px",
-};
 
 const Root = styled("div")(() => ({
   height: "100%",
@@ -116,8 +58,11 @@ function Main() {
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
   const position = selectedMarket ? selectedMarket : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
+  const dispatch = useDispatch();
+
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+    newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
   };
 
   return (
@@ -225,7 +170,7 @@ function Main() {
           textDecoration: "underline",
         }}
         disabled={disabled}
-        onClick={() => (window.location.href = "/")} /* 수정필요 */
+        onClick={() => (window.location.href = "/near_market_list")}
       >
         <div>
           {selectedMarket ? (

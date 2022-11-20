@@ -23,3 +23,17 @@ export const selectMarket = (market_title) => {
     market_title,
   };
 };
+
+export const MoveBookMark = () => {
+  return {
+    type: "북마크",
+    flag: false,
+  };
+};
+
+export const MoveMap = () => {
+  return {
+    type: "지도",
+    flag: true,
+  };
+};
