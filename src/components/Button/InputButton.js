@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 const InputBlank = styled.input`
@@ -16,10 +16,12 @@ const InputBlank = styled.input`
   }
 `;
 
-export default function InputButton(props) {
+const InputButton = forwardRef((props, ref) => {
   return (
     <div>
-      <InputBlank placeholder={props.placeholder} />
+      {console.log(props.register)}
+      <InputBlank placeholder={props.placeholder} {...props.register} />
     </div>
   );
-}
+});
+export default InputButton;
