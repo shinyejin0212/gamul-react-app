@@ -1,8 +1,8 @@
-const initialState = null;
+const initialState = "";
 
 const ImageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "base24이미지저장":
+    case "Base24이미지저장":
       state = action.imagebase24;
       return state;
     case "Form이미지저장":

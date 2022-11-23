@@ -40,7 +40,7 @@ export const MoveMap = () => {
 
 export const setImageBase24 = (imagebase24) => {
   return {
-    tyep: "base24이미지저장",
+    tyep: "Base24이미지저장",
     imagebase24,
   };
 };
