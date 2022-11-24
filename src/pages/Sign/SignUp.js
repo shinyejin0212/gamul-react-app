@@ -77,6 +77,7 @@ export default function SignUp() {
           <InputButton
             placeholder="비밀번호를 입력해주세요 (영어+숫자 8자 이상)"
             resister={register("password")}
+            ref={register}
           />
         </div>
         <div style={wrapInput}>

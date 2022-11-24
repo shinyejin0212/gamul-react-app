@@ -17,10 +17,11 @@ const InputBlank = styled.input`
 `;
 
 const InputButton = forwardRef((props, ref) => {
+  const { placeholder, register } = props;
   return (
     <div>
       {console.log(props.register)}
-      <InputBlank placeholder={props.placeholder} {...props.register} />
+      <InputBlank placeholder={placeholder} {...register} />
     </div>
   );
 });
