@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 const NavWrapper = styled.section`
   top: 0;
   width: 100vw;
@@ -14,43 +14,39 @@ const NavWrapper = styled.section`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 0.1px 0.1px 3px #b3b3b3;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  // position: fixed;
+  // flex-direction: column;
+  display: static;
 `;
 
-const NabLogo = styled.section`
+const NabLogo = styled.div`
   color: white;
   font-size: 40px;
-  // font-family: "Montserrat";
   font-weight: 900;
   font-style: italic;
+  padding-top: 33px;
 `;
 
 export default function Nabvar() {
   return (
     <div>
       <NavWrapper>
-        <div
+        <FontAwesomeIcon
+          icon={faUser}
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
+            width: "20px",
+            height: "20px",
+            color: "white",
+            float: "right",
+            // align: "right",
+            // marginTop: "12.1px",
+            // marginRight: "10vw",
+            paddingTop: "10px",
+            paddingRight: "15px",
           }}
-        >
-          <FontAwesomeIcon
-            icon={faUser}
-            style={{
-              width: "20px",
-              height: "20px",
-              color: "white",
-              // float: "right",
-              // align: "right",
-              marginRight: "10px",
-              marginTop: "12.1px",
-            }}
-            // onClick = {}
-          />
-        </div>
+          // onClick = {}
+        />
+
         <NabLogo>GAMUL</NabLogo>
       </NavWrapper>
     </div>

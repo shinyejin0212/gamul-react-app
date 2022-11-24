@@ -26,13 +26,14 @@ export const GlobalStyle = createGlobalStyle`
         position:absolute;
         width: 100vw;
         // height: calc(var(--vh, 1vh) * 100);        
-        overflow-y: scroll;
+        overflow-x: hidden;
+        overflow-y: hidden;
         margin: 0;
         display: flex;
         justify-content: center;
         background-color: #FFF;
         align-items: center;
-        // margin-top: 113px;
+
     }
 
 
@@ -47,7 +48,7 @@ export const GlobalStyle = createGlobalStyle`
         .App {
           position:relative
           width: 100vw;
-          height: calc(var(--vh, 1vh) * 100);
+          height: calc(var(--vh, 1vh) * 100)vh;
           font-family: 'Montserrat', sans-serif;
 
           & > {
