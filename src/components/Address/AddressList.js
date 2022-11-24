@@ -1,5 +1,5 @@
 import React from "react";
-import dummy from "../../data/LikeAddress.json";
+import dummy from "../../api/LikeAddress.json";
 import AddressCard from "./AddressCard";
 export default function AddressList() {
   return (

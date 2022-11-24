@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { marketdata } from "../../data/MarketInfo";
+import { marketdata } from "../../api/MarketInfo";
 import { Button } from "@mui/material";
 import { pointColor } from "../../styles/GlobalStyles";
 
