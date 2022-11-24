@@ -7,21 +7,22 @@ import axios from "../../api/axios";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import styled from "styled-components";
 
-const InputBlank = {
-  marginTop: "12px",
-  marginBottom: "12px",
-  width: "80vw",
-  maxWidth: "354px",
-  height: "50px",
-  borderRadius: "12px",
-  borderStyle: "solid",
-  borderColor: "#dadada",
-  padding: "10px",
-  placeholder: {
-    color: "#dadada",
-  },
-};
+const InputBlank = styled.input`
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80vw;
+  max-width: 354px;
+  height: 50px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #dadada;
+  padding: 10px;
+  ::placeholder {
+    color: #dadada;
+  }
+`;
 
 const wrapInput = {
   paddingBottom: "0.5vh",
@@ -50,8 +51,24 @@ export default function SignUp() {
     .shape({
       nickname: yup
         .string()
-        .required("제목을 입력해주세요 😰")
-        .min(2, "2자 이상 입력해주세요!"),
+        .required("이름을 입력해주세요 😰")
+        .min(2, "2자 이상 입력해주세요 😰"),
+      email: yup
+        .string()
+        .required("이메일을 입력해주세요 😰")
+        .email("올바른 이메일 형식을 입력해주세요 😰"),
+      password: yup
+        .string()
+        .required("비밀번호를 입력해주세요 😰")
+        .matches(
+          /^(?!((?:[0-9]+)|(?:[a-zA-Z]+)|(?:[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,\n]+))$)(.){8,16}$/, //영문+숫자 혹은 영문+특수문자
+          "8자 이상 영문, 숫자, 특수문자 중 2가지 이상을 조합해야 합니다."
+        ),
+
+      checkpassword: yup
+        .string()
+        .required("비밀번호를 확인하세요 😰")
+        .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다 😰"),
     })
     .required();
 
@@ -59,16 +76,14 @@ export default function SignUp() {
     handleSubmit,
     formState: { errors },
     register,
-    watch,
-    setValue,
-    control,
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
     defaultValues: {
-      nickname: "",
-      email: "",
-      password: "",
-      checkpassword: "",
+      nickname: " ",
+      email: " ",
+      password: " ",
+      checkpassword: " ",
     },
   });
 
@@ -94,38 +109,62 @@ export default function SignUp() {
       <div style={explain}>간단한 회원가입을 통해 GAMUL을 이용해보세요.</div>
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div style={wrapInput}>
-          <div style={secondtitle}>닉네임</div>
-          <input
-            style={InputBlank}
+          <div style={secondtitle}>
+            닉네임
+            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+              {errors.nickname?.message}
+            </a>
+          </div>
+          <InputBlank
             placeholder="닉네임을 입력해주세요"
-            {...register("nickname")}
+            {...register("nickname", { required: true })}
           />
         </div>
         <div style={wrapInput}>
-          <div style={secondtitle}>이메일</div>
-          <input
-            style={InputBlank}
+          <div style={secondtitle}>
+            이메일
+            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+              {errors.email?.message}
+            </a>
+          </div>
+          <InputBlank
             placeholder="이메일을 입력해주세요"
-            {...register("email")}
+            {...register("email", { required: true })}
           />
         </div>
         <div style={wrapInput}>
-          <div style={secondtitle}>비밀번호</div>
-          <input
-            style={InputBlank}
-            placeholder="비밀번호를 입력해주세요 (영어+숫자 8자 이상)"
-            {...register("password")}
+          <div style={secondtitle}>
+            비밀번호
+            <a
+              style={{
+                color: "red",
+                fontSize: "12px",
+                float: "right",
+              }}
+            >
+              {errors.password?.message}
+            </a>
+          </div>
+
+          <InputBlank
+            type="password"
+            placeholder="비밀번호를 입력해주세요 (영어+숫자 or 특수문자 8자 이상)"
+            {...register("password", { required: true })}
           />
         </div>
         <div style={wrapInput}>
-          <div style={secondtitle}>비밀번호 확인</div>
-          <input
-            style={InputBlank}
+          <div style={secondtitle}>
+            비밀번호 확인
+            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+              {errors.checkpassword?.message}
+            </a>
+          </div>
+          <InputBlank
+            type="password"
             placeholder="비밀번호를 다시 입력해주세요"
-            {...register("checkpassword")}
+            {...register("checkpassword", { required: true })}
           />
         </div>
-        {errors.name && errors.name.message}
         <SubmitButton title="가입 완료하기" />
       </form>
       <br></br>
