@@ -1,11 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Title } from "../../styles/styles";
-import InputButton from "../../components/Button/InputButton.js";
 import SubmitButton from "../../components/Button/SubmitButton.js";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import axios from "../../api/axios";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const InputBlank = {
+  marginTop: "12px",
+  marginBottom: "12px",
+  width: "80vw",
+  maxWidth: "354px",
+  height: "50px",
+  borderRadius: "12px",
+  borderStyle: "solid",
+  borderColor: "#dadada",
+  padding: "10px",
+  placeholder: {
+    color: "#dadada",
+  },
+};
 
 const wrapInput = {
   paddingBottom: "0.5vh",
@@ -28,16 +44,36 @@ const secondtitle = {
   maxWidth: "354px",
 };
 
-const CommentInsert = styled.form`
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-`;
-
 export default function SignUp() {
-  const { register, watch, handleSubmit, setValue } = useForm();
+  const schema = yup
+    .object()
+    .shape({
+      nickname: yup
+        .string()
+        .required("제목을 입력해주세요 😰")
+        .min(2, "2자 이상 입력해주세요!"),
+    })
+    .required();
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+    watch,
+    setValue,
+    control,
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      nickname: "",
+      email: "",
+      password: "",
+      checkpassword: "",
+    },
+  });
+
   const onValid = async (data) => {
-    alert(JSON.stringify(data));
+    // alert(JSON.stringify(data));/
     console.log(data, "onvalid");
 
     try {
@@ -51,7 +87,6 @@ export default function SignUp() {
     }
   };
   const onInvalid = (data) => console.log(data, "onInvalid");
-  console.log(watch());
 
   return (
     <>
@@ -60,34 +95,37 @@ export default function SignUp() {
       <form onSubmit={handleSubmit(onValid, onInvalid)}>
         <div style={wrapInput}>
           <div style={secondtitle}>닉네임</div>
-          <InputButton
+          <input
+            style={InputBlank}
             placeholder="닉네임을 입력해주세요"
-            resister={register("nickname")}
+            {...register("nickname")}
           />
         </div>
         <div style={wrapInput}>
           <div style={secondtitle}>이메일</div>
-          <InputButton
+          <input
+            style={InputBlank}
             placeholder="이메일을 입력해주세요"
-            resister={register("email")}
+            {...register("email")}
           />
         </div>
         <div style={wrapInput}>
           <div style={secondtitle}>비밀번호</div>
-          <InputButton
+          <input
+            style={InputBlank}
             placeholder="비밀번호를 입력해주세요 (영어+숫자 8자 이상)"
-            resister={register("password")}
-            ref={register}
+            {...register("password")}
           />
         </div>
         <div style={wrapInput}>
           <div style={secondtitle}>비밀번호 확인</div>
-          <InputButton
+          <input
+            style={InputBlank}
             placeholder="비밀번호를 다시 입력해주세요"
-            resister={register("checkpassword")}
+            {...register("checkpassword")}
           />
         </div>
-
+        {errors.name && errors.name.message}
         <SubmitButton title="가입 완료하기" />
       </form>
       <br></br>
