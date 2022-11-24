@@ -46,6 +46,8 @@ const secondtitle = {
 };
 
 export default function SignUp() {
+  const PasswordPattern =
+    /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,}$/;
   const schema = yup
     .object()
     .shape({
@@ -57,13 +59,10 @@ export default function SignUp() {
         .string()
         .required("이메일을 입력해주세요 😰")
         .email("올바른 이메일 형식을 입력해주세요 😰"),
-      password: yup
-        .string()
-        .required("비밀번호를 입력해주세요 😰")
-        .matches(
-          /^(?!((?:[0-9]+)|(?:[a-zA-Z]+)|(?:[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,\n]+))$)(.){8,16}$/, //영문+숫자 혹은 영문+특수문자
-          "8자 이상 영문, 숫자, 특수문자 중 2가지 이상을 조합해야 합니다."
-        ),
+      password: yup.string().required("비밀번호를 입력해주세요 😰").matches(
+        PasswordPattern, //영문+숫자 혹은 영문+특수문자
+        "8자 이상 영문, 숫자, 특수문자 중 2가지 이상을 조합해야 합니다."
+      ),
 
       checkpassword: yup
         .string()
@@ -80,10 +79,10 @@ export default function SignUp() {
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: {
-      nickname: " ",
-      email: " ",
-      password: " ",
-      checkpassword: " ",
+      nickname: "",
+      email: "",
+      password: "",
+      checkpassword: "",
     },
   });
 
@@ -93,9 +92,9 @@ export default function SignUp() {
 
     try {
       await axios.post(`/api/auth/signup`, {
-        name: "data.nickname",
-        email: "data.email",
-        password: "data.password",
+        name: data.nickname,
+        email: data.email,
+        password: data.password,
       });
     } catch (e) {
       console.log(e);
@@ -111,7 +110,10 @@ export default function SignUp() {
         <div style={wrapInput}>
           <div style={secondtitle}>
             닉네임
-            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+            <a
+              href="#!"
+              style={{ color: "red", fontSize: "12px", float: "right" }}
+            >
               {errors.nickname?.message}
             </a>
           </div>
@@ -123,7 +125,10 @@ export default function SignUp() {
         <div style={wrapInput}>
           <div style={secondtitle}>
             이메일
-            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+            <a
+              href="#!"
+              style={{ color: "red", fontSize: "12px", float: "right" }}
+            >
               {errors.email?.message}
             </a>
           </div>
@@ -136,6 +141,7 @@ export default function SignUp() {
           <div style={secondtitle}>
             비밀번호
             <a
+              href="#!"
               style={{
                 color: "red",
                 fontSize: "12px",
@@ -155,7 +161,10 @@ export default function SignUp() {
         <div style={wrapInput}>
           <div style={secondtitle}>
             비밀번호 확인
-            <a style={{ color: "red", fontSize: "12px", float: "right" }}>
+            <a
+              href="#!"
+              style={{ color: "red", fontSize: "12px", float: "right" }}
+            >
               {errors.checkpassword?.message}
             </a>
           </div>
