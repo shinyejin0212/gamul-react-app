@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 const NavWrapper = styled.section`
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   top: 0;
   width: 100vw;
   max-width: 375px;
@@ -15,9 +19,9 @@ const NavWrapper = styled.section`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 0.1px 0.1px 3px #b3b3b3;
-  // position: fixed;
+
   // flex-direction: column;
-  display: static;
+  // display: absolute;
 `;
 
 const NabLogo = styled.div`
@@ -31,7 +35,7 @@ const NabLogo = styled.div`
 export default function Nabvar() {
   return (
     <div>
-      <Link to="/">
+      <Link to="/" style={{ textDecorationLine: "none" }}>
         <NavWrapper>
           <FontAwesomeIcon
             icon={faUser}

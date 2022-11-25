@@ -16,7 +16,7 @@ const Button = styled.button`
   margin-bottom: 12px;
   width: 80vw;
   max-width: 354px;
-  height: 50px;
+  height: 40px;
   border-radius: 12px;
 `;
 export default function SubmitButton(props) {

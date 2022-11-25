@@ -7,5 +7,5 @@ export const Title = styled.div`
   display: flex;
   font-weight: 900;
   font-size: 24px;
-  margin-top: 44px;
+  // margin-top: 44px;
 `;

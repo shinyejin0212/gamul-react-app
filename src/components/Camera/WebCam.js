@@ -2,7 +2,14 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
-import { useModalClose } from "../../hooks/useModalClose";
+
+const webCamWrap = {
+  width: "375px",
+  height: "496px",
+  padding: "5px",
+  backgroundColor: "black",
+  borderRadius: "20px",
+};
 
 function WebCam() {
   const [img, setImg] = useState(null);
@@ -92,7 +99,7 @@ function WebCam() {
         <>
           {/* <TestOverlay /> */}
           <Webcam
-            style={{ width: "338px", height: "496px" }}
+            style={webCamWrap}
             imageSmoothing={true}
             screenshotFormat="image/jpg"
             ref={webcamRef}
