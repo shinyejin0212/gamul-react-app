@@ -12,7 +12,7 @@ import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
 import ObjectDetection from "./pages/Camera/ObjectDetection";
 import NearMarketList from "./pages/NearMarket/nearMartList";
-
+import PriceHistoryGraph from "./pages/Camera/priceHistoryGraph";
 const Layout = () => {
   return (
     <>
@@ -39,6 +39,10 @@ function App() {
               <Route path="main" element={<Main />} />
               <Route path="object_detection" element={<ObjectDetection />} />
               <Route path="near_market_list" element={<NearMarketList />} />
+              <Route
+                path="price_history_graph"
+                element={<PriceHistoryGraph />}
+              />
 
               {/* </div> */}
             </Route>
