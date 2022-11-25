@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import CheckModal from "../Camera/CheckModal";
+import { useModalClose } from "../../hooks/useModalClose";
 
 function WebCam() {
   const [img, setImg] = useState(null);
   const [formdata, setFormData] = useState(null);
+  // const [modalOpen, setModalOpen, clickRef] = useModalClose(false);/
+  const [modalOpen, setModalOpen] = useState(false);
 
   const webcamRef = useRef(null);
 
@@ -65,10 +68,16 @@ function WebCam() {
     return fileList;
   };
 
+  // 모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   const sendImage = () => {
     setFormData(convertBase64IntoFile(img, "object.jpeg"));
 
     console.log(formdata);
+    showModal();
 
     // axios 요청 보내기
   };
@@ -107,6 +116,10 @@ function WebCam() {
 
           <div>
             <Button onClick={sendImage}>전송하기</Button>
+            {modalOpen && (
+              <CheckModal setModalOpen={setModalOpen} />
+              // clickRef={clickRef}
+            )}
           </div>
         </>
       )}
