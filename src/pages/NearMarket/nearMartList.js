@@ -11,7 +11,12 @@ import { Mousewheel, Pagination } from "swiper";
 function nearMartList() {
   const id = 1; //수정하기
   return (
-    <div style={{ padding: "10px" }}>
+    <div
+      style={{
+        padding: "10px",
+        marginTop: "113px",
+      }}
+    >
       <div style={{ backgroundColor: "black" }}>
         <div
           style={{

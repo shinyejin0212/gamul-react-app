@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 export const pointColor = "#FF914D";
+export const lightColor = "#ffdeca";
 
 export const setScreenSize = () => {
   let vh = window.innerHeight * 0.01;
@@ -23,16 +24,13 @@ export const GlobalStyle = createGlobalStyle`
 
 
     body {
-        position:absolute;
         width: 100vw;
         // height: calc(var(--vh, 1vh) * 100);        
         overflow-x: hidden;
         overflow-y: hidden;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        background-color: #FFF;
-        align-items: center;
+        // margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #FFF;      
 
     }
 
@@ -51,6 +49,10 @@ export const GlobalStyle = createGlobalStyle`
           height: calc(var(--vh, 1vh) * 100)vh;
           font-family: 'Montserrat', sans-serif;
 
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
           & > {
             float: left;
           }

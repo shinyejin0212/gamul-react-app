@@ -14,7 +14,7 @@ const InputBlank = styled.input`
   margin-bottom: 12px;
   width: 80vw;
   max-width: 354px;
-  height: 50px;
+  height: 40px;
   border-radius: 12px;
   border-style: solid;
   border-color: #dadada;
@@ -30,14 +30,14 @@ const wrapInput = {
 
 const explain = {
   fontWeight: "500",
-  fontSize: "14px",
+  fontSize: "12px",
   padding: "10px",
-  marginBottom: "30px",
+  marginBottom: "15px",
 };
 
 const secondtitle = {
   fontWeight: "500",
-  fontSize: "18px",
+  fontSize: "15px",
   fontWeight: "600",
   textAlign: "left",
   margin: "auto",
@@ -103,87 +103,112 @@ export default function SignUp() {
   const onInvalid = (data) => console.log(data, "onInvalid");
 
   return (
-    <>
-      <Title>회원가입</Title>
-      <div style={explain}>간단한 회원가입을 통해 GAMUL을 이용해보세요.</div>
-      <form onSubmit={handleSubmit(onValid, onInvalid)}>
-        <div style={wrapInput}>
-          <div style={secondtitle}>
-            닉네임
-            <a
-              href="#!"
-              style={{ color: "red", fontSize: "12px", float: "right" }}
-            >
-              {errors.nickname?.message}
-            </a>
+    <div
+      style={{
+        whiteSpace: "nowrap",
+        // display: "flex",
+        // justifyContent: "center",
+        // alignItems: "center",
+        // minHeight: "100vh",
+      }}
+    >
+      <div>
+        <Title>회원가입</Title>
+        <div style={explain}>간단한 회원가입을 통해 GAMUL을 이용해보세요.</div>
+        <br></br>
+        <form onSubmit={handleSubmit(onValid, onInvalid)}>
+          <div style={wrapInput}>
+            <div style={secondtitle}>
+              닉네임
+              <a
+                href="#!"
+                style={{ color: "red", fontSize: "12px", float: "right" }}
+              >
+                {errors.nickname?.message}
+              </a>
+            </div>
+            <InputBlank
+              placeholder="닉네임을 입력해주세요"
+              {...register("nickname", { required: true })}
+            />
           </div>
-          <InputBlank
-            placeholder="닉네임을 입력해주세요"
-            {...register("nickname", { required: true })}
-          />
-        </div>
-        <div style={wrapInput}>
-          <div style={secondtitle}>
-            이메일
-            <a
-              href="#!"
-              style={{ color: "red", fontSize: "12px", float: "right" }}
-            >
-              {errors.email?.message}
-            </a>
+          <div style={wrapInput}>
+            <div style={secondtitle}>
+              이메일
+              <a
+                href="#!"
+                style={{ color: "red", fontSize: "12px", float: "right" }}
+              >
+                {errors.email?.message}
+              </a>
+            </div>
+            <InputBlank
+              placeholder="이메일을 입력해주세요"
+              {...register("email", { required: true })}
+            />
           </div>
-          <InputBlank
-            placeholder="이메일을 입력해주세요"
-            {...register("email", { required: true })}
-          />
-        </div>
-        <div style={wrapInput}>
-          <div style={secondtitle}>
-            비밀번호
-            <a
-              href="#!"
-              style={{
-                color: "red",
-                fontSize: "12px",
-                float: "right",
-              }}
-            >
-              {errors.password?.message}
-            </a>
-          </div>
+          <div style={wrapInput}>
+            <div style={secondtitle}>
+              비밀번호
+              <a
+                href="#!"
+                style={{
+                  color: "red",
+                  fontSize: "12px",
+                  float: "right",
+                }}
+              >
+                {errors.password?.message}
+              </a>
+            </div>
 
-          <InputBlank
-            type="password"
-            placeholder="비밀번호를 입력해주세요 (영어+숫자 or 특수문자 8자 이상)"
-            {...register("password", { required: true })}
-          />
-        </div>
-        <div style={wrapInput}>
-          <div style={secondtitle}>
-            비밀번호 확인
-            <a
-              href="#!"
-              style={{ color: "red", fontSize: "12px", float: "right" }}
-            >
-              {errors.checkpassword?.message}
-            </a>
+            <InputBlank
+              type="password"
+              placeholder="비밀번호를 입력해주세요 (영어+숫자 or 특수문자 8자 이상)"
+              {...register("password", { required: true })}
+            />
           </div>
-          <InputBlank
-            type="password"
-            placeholder="비밀번호를 다시 입력해주세요"
-            {...register("checkpassword", { required: true })}
+          <div style={wrapInput}>
+            <div style={secondtitle}>
+              비밀번호 확인
+              <a
+                href="#!"
+                style={{ color: "red", fontSize: "12px", float: "right" }}
+              >
+                {errors.checkpassword?.message}
+              </a>
+            </div>
+            <InputBlank
+              type="password"
+              placeholder="비밀번호를 다시 입력해주세요"
+              {...register("checkpassword", { required: true })}
+            />
+          </div>
+          <SubmitButton
+            title="가입 완료하기"
+            onClick={() => (window.location.href = "/login")}
           />
+        </form>
+        <br></br>
+        <div
+          style={{
+            fontSize: "12px",
+          }}
+        >
+          이미 계정이 있으신가요?
         </div>
-        <SubmitButton title="가입 완료하기" />
-      </form>
-      <br></br>
-      이미 계정이 있으신가요?<br></br>
-      <Link
-        to="/login"
-        style={{ marginLeft: "5px", color: "black", fontWeight: "600" }}
-      >
-        로그인하기
-      </Link>
-    </>
+        <Link
+          to="/login"
+          style={{
+            marginLeft: "5px",
+            color: "black",
+            fontWeight: "600",
+            fontSize: "12px",
+          }}
+        >
+          로그인하기
+        </Link>
+      </div>
+    </div>
   );
 }
