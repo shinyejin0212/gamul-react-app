@@ -32,20 +32,17 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              {/* <div className="body"> */}
-              <Route index element={<Home />} />
               <Route path="login" element={<LogIn />} />
-              <Route path="signup" element={<SignUp />} />
               <Route path="main" element={<Main />} />
-              <Route path="object_detection" element={<ObjectDetection />} />
               <Route path="near_market_list" element={<NearMarketList />} />
               <Route
                 path="price_history_graph"
                 element={<PriceHistoryGraph />}
               />
-
-              {/* </div> */}
             </Route>
+            <Route index element={<Home />} />
+            <Route path="object_detection" element={<ObjectDetection />} />
+            <Route path="signup" element={<SignUp />} />
           </Routes>
         </BrowserRouter>
       </div>

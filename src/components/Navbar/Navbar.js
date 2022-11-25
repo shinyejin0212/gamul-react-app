@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -30,25 +31,27 @@ const NabLogo = styled.div`
 export default function Nabvar() {
   return (
     <div>
-      <NavWrapper>
-        <FontAwesomeIcon
-          icon={faUser}
-          style={{
-            width: "20px",
-            height: "20px",
-            color: "white",
-            float: "right",
-            // align: "right",
-            // marginTop: "12.1px",
-            // marginRight: "10vw",
-            paddingTop: "10px",
-            paddingRight: "15px",
-          }}
-          // onClick = {}
-        />
+      <Link to="/">
+        <NavWrapper>
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{
+              width: "20px",
+              height: "20px",
+              color: "white",
+              float: "right",
+              // align: "right",
+              // marginTop: "12.1px",
+              // marginRight: "10vw",
+              paddingTop: "10px",
+              paddingRight: "15px",
+            }}
+            // onClick = {}
+          />
 
-        <NabLogo>GAMUL</NabLogo>
-      </NavWrapper>
+          <NabLogo>GAMUL</NabLogo>
+        </NavWrapper>{" "}
+      </Link>
     </div>
   );
 }
