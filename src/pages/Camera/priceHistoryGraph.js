@@ -1,12 +1,13 @@
 import React from "react";
 import { pointColor } from "../../styles/GlobalStyles";
+
+import { Title } from "../../styles/styles";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend,
 } from "chart.js";
@@ -18,7 +19,6 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend
 );
@@ -61,15 +61,30 @@ export const data = {
 
 function priceHistoryGraph() {
   return (
-    <div style={{ widht: "80vw", maxWidth: "375px", height: "auto" }}>
-      <Line
-        options={options}
-        data={data}
-        width="80vw"
-        maxwidth="375px"
-        height="70"
-        // style={{ width: "80vw", maxWidth: "370px", height: "auto" }}
-      />
+    <div>
+      <div>
+        <Title style={{ padding: 5, fontSize: "18px" }}>
+          내 매장의 {} 가격 추이는 어떨까?
+        </Title>
+      </div>
+      <div
+        style={{
+          widht: "80vw",
+          maxWidth: "375px",
+          height: "auto",
+          marginTop: "150px",
+        }}
+      >
+        <Line
+          options={options}
+          data={data}
+          width="80vw"
+          maxwidth="375px"
+          height="70"
+
+          // style={{ width: "80vw", maxWidth: "370px", height: "auto" }}
+        />
+      </div>
     </div>
   );
 }
