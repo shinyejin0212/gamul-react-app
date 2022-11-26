@@ -29,7 +29,7 @@ function Main() {
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
   const [flag, setflag] = useState(true);
-  const [bookmarks, setBookmarks] = useState(null);
+  const [bookmarks, setBookmarks] = useState([]);
   const token = useSelector((state) => state.authToken);
 
   const toggleDrawer = (newOpen) => () => {
@@ -40,8 +40,8 @@ function Main() {
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
   };
 
-  const fetchBookmarks = () => {
-    axios
+  const fetchBookmarks = async () => {
+    await axios
       .get(`/api/bookmark`, {
         headers: {
           // "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function Main() {
       .then((response) => {
         console.log("여기임", response.data.data.market);
         setBookmarks(response.data.data.market);
-        dispatch(getBookmarks(bookmarks));
+        dispatch(getBookmarks(response.data.data.market));
       })
       .catch((error) => console.log("Network Error : ", error));
   };

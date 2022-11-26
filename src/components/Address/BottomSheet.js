@@ -6,11 +6,16 @@ import useGeoLocation from "../../hooks/useGeolocation.tsx";
 import AddressList from "./AddressList";
 import { pointColor } from "../../styles/GlobalStyles";
 import axios from "../../api/axios";
-import { selectMarket, MoveBookMark, MoveMap } from "../../actions/action";
+import {
+  selectMarket,
+  MoveBookMark,
+  MoveMap,
+  addBookmarks,
+} from "../../actions/action";
 
 function BottomSheet({}) {
   const currentLocation = useGeoLocation();
-  const [market, setMarket] = useState(null);
+  const [market, setMarket] = useState("");
 
   const onClickCurrent = () => {
     dispatch(MoveMap());
@@ -22,10 +27,29 @@ function BottomSheet({}) {
 
   const dispatch = useDispatch();
 
-  const onClickChoice = () => {
+  const token = useSelector((state) => state.authToken);
+  const onClickChoice = async () => {
     dispatch(selectMarket(clickMarker));
     dispatch(MoveBookMark());
     setMarket(selectedMarket);
+    dispatch(addBookmarks(selectedMarket));
+
+    try {
+      await axios.post(
+        `/api/bookmark`,
+        {
+          market: market,
+        },
+        {
+          headers: {
+            // "Content-Type": "application/json",
+            Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+          },
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return move === false ? (
@@ -40,7 +64,7 @@ function BottomSheet({}) {
       >
         주소설정
       </div>
-      {market} {/*수정 해야함  */}
+      {/* {market} 수정 해야함  */}
       <Button
         onClick={onClickCurrent}
         sx={{

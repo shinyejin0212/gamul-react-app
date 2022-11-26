@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 
 export default function AddressList() {
   const bookmarks = useSelector((state) => state.getBookMarkReducer);
+  console.log("addresslist", bookmarks);
   return (
     <div>
-      {bookmarks.map((bookmark, id) => (
+      {bookmarks.map((bookmark, index) => (
         <AddressCard
-          key={id}
+          key={index}
           title={bookmark}
 
           //   title={LikeAddress.title}

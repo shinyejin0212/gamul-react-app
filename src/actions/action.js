@@ -58,3 +58,10 @@ export const getBookmarks = (bookmarks) => {
     bookmarks,
   };
 };
+
+export const addBookmarks = (bookmark) => {
+  return {
+    type: "북마크저장하기",
+    bookmark,
+  };
+};
