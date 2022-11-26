@@ -1,12 +1,22 @@
-import { fontSize } from "@mui/system";
 import React from "react";
 import pin_icon from "../../assets/icons/pin_icon.png";
+import { useDispatch } from "react-redux";
+import { selectMarket } from "../../actions/action";
 
 function AddressCard({ title }) {
+  const dispatch = useDispatch();
+
+  const clickBookmark = (title) => {
+    console.log("addresslist 클릭됨", title);
+    dispatch(selectMarket(title));
+  };
   return (
     // <div style={{display:"flex", flexDirection:"row" }}>
     <>
       <div
+        onClick={(e) => {
+          clickBookmark(title);
+        }}
         style={{
           fontWeight: 750,
           fontSize: 16,
@@ -17,7 +27,6 @@ function AddressCard({ title }) {
         <img
           alt="pin_icon"
           src={pin_icon}
-          onClick={() => (window.location.href = "/")}
           style={{
             width: "14px",
             height: "16px",
