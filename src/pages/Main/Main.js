@@ -20,6 +20,8 @@ import Button from "@mui/material/Button";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { MoveBookMark, MoveMap } from "../../actions/action";
+import axios from "../../api/axios";
+import { tokenSlice } from "../../storage/Auth";
 
 function Main() {
   const [open, setOpen] = useState(false);
@@ -32,7 +34,25 @@ function Main() {
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
   };
+  const [bookmarks, setBookmarks] = useState(null);
 
+  // const fetchBookmarks = () => {
+  //   axios
+  //     .get(`/api/bookmark`, {
+  //       headers: {
+  //         "Content-Type": "application/json;charset=UTF-8",
+  //         Authorization: token,
+  //       },
+  //     })
+  //     .then(
+  //       (response) => setBookmarks(response.data),
+  //       console.log(bookmarks)
+  //       // dispatch(setBookmarks(bookmarks))
+  //     )
+  //     .catch((error) => console.log("Network Error : ", error));
+  // };
+
+  // fetchBookmarks();
   return (
     <Root>
       <div>

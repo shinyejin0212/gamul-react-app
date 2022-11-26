@@ -5,7 +5,7 @@ import KakaoMap from "./KakaoMap";
 import useGeoLocation from "../../hooks/useGeolocation.tsx";
 import AddressList from "./AddressList";
 import { pointColor } from "../../styles/GlobalStyles";
-
+import axios from "../../api/axios";
 import { selectMarket, MoveBookMark, MoveMap } from "../../actions/action";
 
 function BottomSheet() {
@@ -16,7 +16,6 @@ function BottomSheet() {
     dispatch(MoveMap());
   };
 
-  const counter = useSelector((state) => state.counterReducer);
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
   const move = useSelector((state) => state.BookMarkOrMapReducer);

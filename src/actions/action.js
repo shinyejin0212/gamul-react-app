@@ -40,14 +40,21 @@ export const MoveMap = () => {
 
 export const setImageBase24 = (imagebase24) => {
   return {
-    tyep: "Base24이미지저장",
+    type: "Base24이미지저장",
     imagebase24,
   };
 };
 
 export const setImageForm = (imageform) => {
   return {
-    tyep: "Form이미지저장",
+    type: "Form이미지저장",
     imageform,
+  };
+};
+
+export const setBookmarks = (bookmarks) => {
+  return {
+    type: "북마크가져오기",
+    bookmarks,
   };
 };

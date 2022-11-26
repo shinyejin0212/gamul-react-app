@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import SubmitButton from "../../components/Button/SubmitButton.js";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { pointColor, lightColor } from "../../styles/GlobalStyles";
@@ -57,6 +57,7 @@ const styles = {
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.authToken);
 
   const {
     handleSubmit,
@@ -70,7 +71,6 @@ export default function Home() {
       password: "",
     },
   });
-
   const onValid = async ({ email, password }) => {
     // alert(JSON.stringify(data));/
     console.log({ email, password }, "onvalid");
@@ -81,10 +81,12 @@ export default function Home() {
 
     if (response.status) {
       // 쿠키에 Refresh Token, store에 Access Token 저장
-      setRefreshToken(response.json.refresh_token);
-      dispatch(SET_TOKEN(response.json.access_token));
+      setRefreshToken(response.json.refreshToken);
+      dispatch(SET_TOKEN(response.json.accessToken));
 
-      return navigate("/");
+      console.log("왜 안돼", token);
+
+      return navigate("/main");
     } else {
       console.log(response.json);
     }

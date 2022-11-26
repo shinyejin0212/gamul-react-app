@@ -2,7 +2,7 @@ import { fontSize } from "@mui/system";
 import React from "react";
 import pin_icon from "../../assets/icons/pin_icon.png";
 
-function AddressCard({ title, address, latitude, lontitude }) {
+function AddressCard({ title }) {
   return (
     // <div style={{display:"flex", flexDirection:"row" }}>
     <>
@@ -27,9 +27,9 @@ function AddressCard({ title, address, latitude, lontitude }) {
 
         <a style={{ lineHeight: "38px" }}> {title}</a>
       </div>
-      <div style={{ color: "gray", fontSize: 13, textIndent: 22 }}>
+      {/* <div style={{ color: "gray", fontSize: 13, textIndent: 22 }}>
         {address}
-      </div>
+      </div> */}
       <hr
         style={{
           borderStyle: "solid",

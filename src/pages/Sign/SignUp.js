@@ -60,6 +60,7 @@ export default function SignUp() {
         email: data.email,
         password: data.password,
       });
+      window.location.href = "/";
     } catch (e) {
       console.log(e);
     }
@@ -132,10 +133,7 @@ export default function SignUp() {
               {...register("checkpassword", { required: true })}
             />
           </div>
-          <SubmitButton
-            title="가입 완료하기"
-            onClick={() => (window.location.href = "/login")}
-          />
+          <SubmitButton title="가입 완료하기" />
         </form>
         <br></br>
         <div
