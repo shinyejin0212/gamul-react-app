@@ -4,14 +4,9 @@ import Button from "@mui/material/Button";
 import KakaoMap from "./KakaoMap";
 import useGeoLocation from "../../hooks/useGeolocation.tsx";
 import AddressList from "./AddressList";
+import { pointColor } from "../../styles/GlobalStyles";
 
-import {
-  increment,
-  decrement,
-  selectMarket,
-  MoveBookMark,
-  MoveMap,
-} from "../../actions/action";
+import { selectMarket, MoveBookMark, MoveMap } from "../../actions/action";
 
 function BottomSheet() {
   const currentLocation = useGeoLocation();
@@ -34,24 +29,45 @@ function BottomSheet() {
     setMarket(selectedMarket);
   };
 
-  const onIncrease = () => {
-    dispatch(increment());
-  };
-
-  const onDecrease = () => {
-    dispatch(decrement());
-  };
-
-  return move == false ? (
+  return move === false ? (
     <>
-      <div>주소설정</div>
+      <div
+        style={{
+          fontWeight: "900",
+          fontSize: "20px",
+          textAlign: "center",
+          fontStyle: "oblique",
+        }}
+      >
+        주소설정
+      </div>
       {market} {/*수정 해야함  */}
-      <Button onClick={onClickCurrent}>현재 위치로 설정</Button>
-      <hr></hr>
+      <Button
+        onClick={onClickCurrent}
+        sx={{
+          fontSize: "16p",
+          backgroundColor: pointColor,
+          color: "white",
+          fontWeight: "900",
+          fontSize: "14px",
+
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
+
+          marginTop: "12px",
+          marginBottom: "12px",
+          width: "130px",
+          height: "30px",
+          borderRadius: "12px",
+        }}
+      >
+        현재 위치로 설정
+      </Button>
+      <hr style={{ backgroundColor: "#E2E2E2", height: 10, border: 0 }} />
+      <br></br>
       <AddressList />
-      {counter}
-      <Button onClick={onIncrease}>+1</Button>
-      <Button onClick={onDecrease}>-1</Button>
     </>
   ) : (
     <>

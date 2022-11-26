@@ -1,9 +1,10 @@
 import React from "react";
 import dummy from "../../api/LikeAddress.json";
 import AddressCard from "./AddressCard";
+
 export default function AddressList() {
   return (
-    <>
+    <div>
       {dummy.LikeAddressList.map((LikeAddress) => (
         <AddressCard
           key={LikeAddress.id}
@@ -18,6 +19,6 @@ export default function AddressList() {
           //   lontitude={LikeAddress.lontitude}
         />
       ))}
-    </>
+    </div>
   );
 }

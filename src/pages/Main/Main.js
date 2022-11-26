@@ -21,37 +21,6 @@ import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { MoveBookMark, MoveMap } from "../../actions/action";
 
-export const BagIcon = styled.img`
-  width: 50px;
-  margin: 0px;
-`;
-
-export const CartIcon = styled.img`
-  width: 80px;
-  margin: 10px;
-`;
-
-const Root = styled("div")(() => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "100vh",
-}));
-
-const StyledBox = styled(Box)(() => ({
-  backgroundColor: "white",
-}));
-
-const Puller = styled(Box)(() => ({
-  width: 30,
-  height: 6,
-  backgroundColor: "#dadada",
-  borderRadius: 3,
-  position: "absolute",
-  top: 8,
-  left: "calc(50% - 15px)",
-}));
-
 function Main() {
   const [open, setOpen] = useState(false);
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
@@ -233,3 +202,34 @@ function Main() {
 }
 
 export default Main;
+
+export const BagIcon = styled.img`
+  width: 50px;
+  margin: 0px;
+`;
+
+export const CartIcon = styled.img`
+  width: 80px;
+  margin: 10px;
+`;
+
+const Root = styled("div")(() => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+}));
+
+const StyledBox = styled(Box)(() => ({
+  backgroundColor: "white",
+}));
+
+const Puller = styled(Box)(() => ({
+  width: 30,
+  height: 6,
+  backgroundColor: "#dadada",
+  borderRadius: 3,
+  position: "absolute",
+  top: 8,
+  left: "calc(50% - 15px)",
+}));
