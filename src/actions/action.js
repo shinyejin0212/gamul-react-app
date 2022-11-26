@@ -52,7 +52,7 @@ export const setImageForm = (imageform) => {
   };
 };
 
-export const setBookmarks = (bookmarks) => {
+export const getBookmarks = (bookmarks) => {
   return {
     type: "북마크가져오기",
     bookmarks,

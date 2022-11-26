@@ -21,7 +21,6 @@ import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { MoveBookMark, MoveMap } from "../../actions/action";
 import axios from "../../api/axios";
-import { tokenSlice } from "../../storage/Auth";
 
 function Main() {
   const [open, setOpen] = useState(false);
@@ -32,9 +31,8 @@ function Main() {
   const [flag, setflag] = useState(true);
 
   const toggleDrawer = (newOpen) => () => {
-    if (flag) {
-      fetchBookmarks();
-    }
+    fetchBookmarks();
+
     setflag(false);
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
@@ -49,11 +47,12 @@ function Main() {
           Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
         },
       })
-      .then(
-        (response) => setBookmarks(response.data),
-        console.log(bookmarks)
-        // dispatch(setBookmarks(bookmarks))
-      )
+      .then((response) => {
+        console.log(response.data);
+        setBookmarks(response.data);
+      })
+      // dispatch(setBookmarks(bookmarks))
+
       .catch((error) => console.log("Network Error : ", error));
   };
 
@@ -81,11 +80,10 @@ function Main() {
         <Button
           onClick={toggleDrawer(true)}
           sx={{
-            fontSize: "16p",
             backgroundColor: selectedMarket ? "white" : pointColor,
             color: selectedMarket ? pointColor : "white",
             fontWeight: "900",
-            fontSize: "14px",
+            fontSize: "16px",
             fontStyle: "italic",
 
             borderRadius: "12px",
@@ -97,7 +95,6 @@ function Main() {
             marginBottom: "12px",
             width: "162px",
             height: "30px",
-            borderRadius: "12px",
           }}
         >
           {position}
@@ -109,7 +106,7 @@ function Main() {
             backgroundColor: selectedMarket ? "#ffdeca" : "white",
             color: pointColor,
             fontWeight: "600",
-            fontSize: "16px",
+
             borderRadius: "12px",
             border: "0",
             outline: "0",
@@ -119,7 +116,6 @@ function Main() {
             maxWidth: "254px",
             height: "254px",
             maxHeight: "25vh",
-            borderRadius: "12px",
             textDecoration: "underline",
           }}
           disabled={disabled}
@@ -148,7 +144,6 @@ function Main() {
             backgroundColor: selectedMarket ? "#f9f7f5" : "white",
             color: "#828282",
             fontWeight: "600",
-            fontSize: "16px",
             borderRadius: "12px",
             border: "0",
             outline: "0",
@@ -158,7 +153,6 @@ function Main() {
             maxWidth: "254px",
             height: "150px",
             maxHeight: "15vh",
-            borderRadius: "12px",
 
             textDecoration: "underline",
           }}
