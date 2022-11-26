@@ -25,7 +25,7 @@ export default function SignUp() {
         .email("올바른 이메일 형식을 입력해주세요 😰"),
       password: yup.string().required("비밀번호를 입력해주세요 😰").matches(
         PasswordPattern, //영문+숫자 혹은 영문+특수문자
-        "8자 이상 영문, 숫자, 특수문자 중 2가지 이상을 조합해야 합니다."
+        "8자 이상 영문, 숫자, 특수문자 중 가지 이상을 조합해야 합니다."
       ),
 
       checkpassword: yup
@@ -84,10 +84,7 @@ export default function SignUp() {
           <div style={wrapInput}>
             <div style={secondtitle}>
               닉네임
-              <a
-                href="#!"
-                style={{ color: "red", fontSize: "12px", float: "right" }}
-              >
+              <a href="#!" style={validation}>
                 {errors.nickname?.message}
               </a>
             </div>
@@ -99,10 +96,7 @@ export default function SignUp() {
           <div style={wrapInput}>
             <div style={secondtitle}>
               이메일
-              <a
-                href="#!"
-                style={{ color: "red", fontSize: "12px", float: "right" }}
-              >
+              <a href="#!" style={validation}>
                 {errors.email?.message}
               </a>
             </div>
@@ -114,14 +108,7 @@ export default function SignUp() {
           <div style={wrapInput}>
             <div style={secondtitle}>
               비밀번호
-              <a
-                href="#!"
-                style={{
-                  color: "red",
-                  fontSize: "12px",
-                  float: "right",
-                }}
-              >
+              <a href="#!" style={validation}>
                 {errors.password?.message}
               </a>
             </div>
@@ -135,10 +122,7 @@ export default function SignUp() {
           <div style={wrapInput}>
             <div style={secondtitle}>
               비밀번호 확인
-              <a
-                href="#!"
-                style={{ color: "red", fontSize: "12px", float: "right" }}
-              >
+              <a href="#!" style={validation}>
                 {errors.checkpassword?.message}
               </a>
             </div>
@@ -210,4 +194,12 @@ const secondtitle = {
   margin: "auto",
   width: "80vw",
   maxWidth: "354px",
+};
+
+const validation = {
+  color: "red",
+  fontSize: "12px",
+  float: "right",
+  textDecoration: "none",
+  whiteSpace: "normal",
 };
