@@ -9,42 +9,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styled from "styled-components";
 
-const InputBlank = styled.input`
-  margin-top: 12px;
-  margin-bottom: 12px;
-  width: 80vw;
-  max-width: 354px;
-  height: 40px;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #dadada;
-  padding: 10px;
-  ::placeholder {
-    color: #dadada;
-  }
-`;
-
-const wrapInput = {
-  paddingBottom: "0.5vh",
-};
-
-const explain = {
-  fontWeight: "500",
-  fontSize: "12px",
-  padding: "10px",
-  marginBottom: "15px",
-};
-
-const secondtitle = {
-  fontWeight: "500",
-  fontSize: "15px",
-  fontWeight: "600",
-  textAlign: "left",
-  margin: "auto",
-  width: "80vw",
-  maxWidth: "354px",
-};
-
 export default function SignUp() {
   const PasswordPattern =
     /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,}$/;
@@ -212,3 +176,38 @@ export default function SignUp() {
     </div>
   );
 }
+
+const InputBlank = styled.input`
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80vw;
+  max-width: 354px;
+  height: 40px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #dadada;
+  padding: 10px;
+  ::placeholder {
+    color: #dadada;
+  }
+`;
+
+const wrapInput = {
+  paddingBottom: "0.5vh",
+};
+
+const explain = {
+  fontWeight: "500",
+  fontSize: "12px",
+  padding: "10px",
+  marginBottom: "15px",
+};
+
+const secondtitle = {
+  fontWeight: "500",
+  fontSize: "15px",
+  textAlign: "left",
+  margin: "auto",
+  width: "80vw",
+  maxWidth: "354px",
+};

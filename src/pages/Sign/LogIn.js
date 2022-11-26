@@ -11,40 +11,6 @@ import { setRefreshToken } from "../../storage/Cookie";
 import { loginUser } from "../../api/User";
 import { SET_TOKEN } from "../../storage/Auth";
 
-const InputBlank = styled.input`
-  margin-top: 12px;
-  margin-bottom: 12px;
-  width: 80vw;
-  max-width: 354px;
-  height: 50px;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #dadada;
-  padding: 10px;
-  ::placeholder {
-    color: #dadada;
-  }
-`;
-
-const SignInButton = styled.button`
-  font-size: 16px;
-  background-color: white;
-  border-style: solid;
-  color: ${pointColor};
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: 12px;
-  border-color: ${pointColor};
-  outline: 0;
-  box-shadow: 2px 2px 4px #b3b3b3;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  width: 80vw;
-  max-width: 354px;
-  height: 50px;
-  border-radius: 12px;
-`;
-
 const styles = {
   fontWeight: "600",
   fontSize: "12px",
@@ -120,3 +86,37 @@ export default function LogIn() {
     </div>
   );
 }
+
+const InputBlank = styled.input`
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80vw;
+  max-width: 354px;
+  height: 50px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #dadada;
+  padding: 10px;
+  ::placeholder {
+    color: #dadada;
+  }
+`;
+
+const SignInButton = styled.button`
+  font-size: 16px;
+  background-color: white;
+  border-style: solid;
+  color: ${pointColor};
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 12px;
+  border-color: ${pointColor};
+  outline: 0;
+  box-shadow: 2px 2px 4px #b3b3b3;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80vw;
+  max-width: 354px;
+  height: 50px;
+  border-radius: 12px;
+`;
