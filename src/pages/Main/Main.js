@@ -29,30 +29,34 @@ function Main() {
   const position = selectedMarket ? selectedMarket : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
+  const [flag, setflag] = useState(true);
 
   const toggleDrawer = (newOpen) => () => {
+    if (flag) {
+      fetchBookmarks();
+    }
+    setflag(false);
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
   };
   const [bookmarks, setBookmarks] = useState(null);
+  const token = useSelector((state) => state.authToken);
+  const fetchBookmarks = () => {
+    axios
+      .get(`/api/bookmark`, {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then(
+        (response) => setBookmarks(response.data),
+        console.log(bookmarks)
+        // dispatch(setBookmarks(bookmarks))
+      )
+      .catch((error) => console.log("Network Error : ", error));
+  };
 
-  // const fetchBookmarks = () => {
-  //   axios
-  //     .get(`/api/bookmark`, {
-  //       headers: {
-  //         "Content-Type": "application/json;charset=UTF-8",
-  //         Authorization: token,
-  //       },
-  //     })
-  //     .then(
-  //       (response) => setBookmarks(response.data),
-  //       console.log(bookmarks)
-  //       // dispatch(setBookmarks(bookmarks))
-  //     )
-  //     .catch((error) => console.log("Network Error : ", error));
-  // };
-
-  // fetchBookmarks();
   return (
     <Root>
       <div>

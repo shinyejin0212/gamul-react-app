@@ -79,10 +79,13 @@ export default function Home() {
     // 백으로부터 받은 응답
     const response = await loginUser({ email, password });
 
+    // console.log(response.json.data.message);
+    // console.log(response.json.data.accessToken);
+
     if (response.status) {
       // 쿠키에 Refresh Token, store에 Access Token 저장
-      setRefreshToken(response.json.refreshToken);
-      dispatch(SET_TOKEN(response.json.accessToken));
+      setRefreshToken(response.json.data.refreshToken);
+      dispatch(SET_TOKEN(response.json.data.accessToken));
 
       console.log("왜 안돼", token);
 
