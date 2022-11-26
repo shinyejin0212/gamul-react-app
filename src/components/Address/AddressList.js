@@ -5,20 +5,19 @@ import { useSelector } from "react-redux";
 
 export default function AddressList() {
   const bookmarks = useSelector((state) => state.getBookMarkReducer);
-  console.log(bookmarks);
   return (
     <div>
-      {/* {bookmarks.forEach((bookmark) => (
+      {bookmarks.map((bookmark, id) => (
         <AddressCard
-          key={bookmark.id}
-          title={bookmark.market}
+          key={id}
+          title={bookmark}
 
           //   title={LikeAddress.title}
           //   address={LikeAddress.address}
           //   latitude={LikeAddress.latitude}
           //   lontitude={LikeAddress.lontitude}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

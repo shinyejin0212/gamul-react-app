@@ -19,7 +19,7 @@ import Button from "@mui/material/Button";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { MoveBookMark, MoveMap } from "../../actions/action";
+import { MoveBookMark, MoveMap, getBookmarks } from "../../actions/action";
 import axios from "../../api/axios";
 
 function Main() {
@@ -29,6 +29,8 @@ function Main() {
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
   const [flag, setflag] = useState(true);
+  const [bookmarks, setBookmarks] = useState(null);
+  const token = useSelector((state) => state.authToken);
 
   const toggleDrawer = (newOpen) => () => {
     fetchBookmarks();
@@ -37,8 +39,7 @@ function Main() {
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
   };
-  const [bookmarks, setBookmarks] = useState(null);
-  const token = useSelector((state) => state.authToken);
+
   const fetchBookmarks = () => {
     axios
       .get(`/api/bookmark`, {
@@ -48,11 +49,10 @@ function Main() {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        setBookmarks(response.data);
+        console.log("여기임", response.data.data.market);
+        setBookmarks(response.data.data.market);
+        dispatch(getBookmarks(bookmarks));
       })
-      // dispatch(setBookmarks(bookmarks))
-
       .catch((error) => console.log("Network Error : ", error));
   };
 

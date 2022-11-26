@@ -8,7 +8,7 @@ import { pointColor } from "../../styles/GlobalStyles";
 import axios from "../../api/axios";
 import { selectMarket, MoveBookMark, MoveMap } from "../../actions/action";
 
-function BottomSheet() {
+function BottomSheet({}) {
   const currentLocation = useGeoLocation();
   const [market, setMarket] = useState(null);
 
