@@ -12,7 +12,7 @@ export default function AddressList() {
 
   return (
     <div>
-      {/* {bookmarks.market.forEach((bookmark, idx) => (
+      {bookmarks.market.map((bookmark, idx) => (
         <AddressCard
           // onClick={(e) => {
           //   console.log("좀");
@@ -27,7 +27,7 @@ export default function AddressList() {
           //   latitude={LikeAddress.latitude}
           //   lontitude={LikeAddress.lontitude}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

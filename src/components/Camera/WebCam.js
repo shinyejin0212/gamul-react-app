@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useDispatch } from "react-redux";
 import { getDetectionResults } from "../../actions/action";
 
@@ -88,7 +88,6 @@ function WebCam() {
       .post(
         `/product`, //주소 바꿔야할 듯
         {
-          name: formdata.name,
           data: formdata,
         },
         {

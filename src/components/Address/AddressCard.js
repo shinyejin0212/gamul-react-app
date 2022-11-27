@@ -5,8 +5,9 @@ import { selectMarket } from "../../actions/action";
 
 function AddressCard({ title, address }) {
   const dispatch = useDispatch();
+  console.log("addressCard", title, address);
 
-  const clickBookmark = (title, address) => {
+  const clickBookmark = (title) => {
     console.log("addresslist 클릭됨", title);
     dispatch(selectMarket(title));
   };
