@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Button from '@mui/material/Button';
-import KakaoMap from './KakaoMap';
-import useGeoLocation from '../../hooks/useGeolocation.tsx';
-import AddressList from './AddressList';
-import { pointColor } from '../../styles/GlobalStyles';
-import axios from '../../api/axios';
-import { selectMarket, MoveBookMark, MoveMap, addBookmarks } from '../../actions/action';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
+import KakaoMap from "./KakaoMap";
+import useGeoLocation from "../../hooks/useGeolocation.tsx";
+import AddressList from "./AddressList";
+import { pointColor } from "../../styles/GlobalStyles";
+import axios from "../../api/axios";
+import {
+  selectMarket,
+  MoveBookMark,
+  MoveMap,
+  addBookmarks,
+} from "../../actions/action";
 
 function BottomSheet({}) {
   const currentLocation = useGeoLocation();
-  const [market, setMarket] = useState('');
+  const [market, setMarket] = useState("");
 
   const onClickCurrent = () => {
     dispatch(MoveMap());
@@ -24,10 +29,11 @@ function BottomSheet({}) {
 
   const token = useSelector((state) => state.authToken);
   const onClickChoice = async () => {
-    dispatch(selectMarket(clickMarker));
+    dispatch(selectMarket(clickMarker[0], clickMarker[1]));
     dispatch(MoveBookMark());
-    setMarket(selectedMarket);
-    dispatch(addBookmarks(selectedMarket));
+    setMarket(selectedMarket[0]);
+    console.log("selectMarket 35", selectedMarket[0]);
+    dispatch(addBookmarks(selectedMarket[0], selectedMarket[1]));
 
     try {
       await axios.post(
@@ -37,7 +43,7 @@ function BottomSheet({}) {
         },
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
           },
         }
@@ -51,10 +57,10 @@ function BottomSheet({}) {
     <>
       <div
         style={{
-          fontWeight: '900',
-          fontSize: '20px',
-          textAlign: 'center',
-          fontStyle: 'oblique',
+          fontWeight: "900",
+          fontSize: "20px",
+          textAlign: "center",
+          fontStyle: "oblique",
         }}
       >
         주소설정
@@ -63,27 +69,27 @@ function BottomSheet({}) {
       <Button
         onClick={onClickCurrent}
         sx={{
-          fontSize: '16p',
+          fontSize: "16p",
           backgroundColor: pointColor,
-          color: 'white',
-          fontWeight: '900',
-          fontSize: '14px',
+          color: "white",
+          fontWeight: "900",
+          fontSize: "14px",
 
-          borderRadius: '12px',
-          border: '0',
-          outline: '0',
-          boxShadow: '2px 2px 4px #b3b3b3',
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
 
-          marginTop: '12px',
-          marginBottom: '12px',
-          width: '130px',
-          height: '30px',
-          borderRadius: '12px',
+          marginTop: "12px",
+          marginBottom: "12px",
+          width: "130px",
+          height: "30px",
+          borderRadius: "12px",
         }}
       >
         현재 위치로 설정
       </Button>
-      <hr style={{ backgroundColor: '#E2E2E2', height: 10, border: 0 }} />
+      <hr style={{ backgroundColor: "#E2E2E2", height: 10, border: 0 }} />
       <br></br>
       <AddressList />
     </>
@@ -94,14 +100,14 @@ function BottomSheet({}) {
       <Button
         onClick={onClickChoice}
         sx={{
-          fontSize: '16px',
-          fontWeight: '800',
+          fontSize: "16px",
+          fontWeight: "800",
           color: pointColor,
-          float: 'right',
-          background: '#ffdeca',
-          borderRadius: '14px',
-          boxShadow: '2px 2px 4px #b3b3b3',
-          padding: '2px',
+          float: "right",
+          background: "#ffdeca",
+          borderRadius: "14px",
+          boxShadow: "2px 2px 4px #b3b3b3",
+          padding: "2px",
         }}
       >
         선택

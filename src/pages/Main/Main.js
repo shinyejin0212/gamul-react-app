@@ -25,7 +25,7 @@ import axios from "../../api/axios";
 function Main() {
   const [open, setOpen] = useState(false);
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
-  const position = selectedMarket ? selectedMarket : "마트 선택하기";
+  const position = selectedMarket[0] ? selectedMarket[0] : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
   const [flag, setflag] = useState(true);

@@ -10,17 +10,19 @@ export const decrement = () => {
   };
 };
 
-export const sendMarket = (market_title) => {
+export const sendMarket = (market_title, market_address) => {
   return {
     type: "마커클릭",
     market_title,
+    market_address,
   };
 };
 
-export const selectMarket = (market_title) => {
+export const selectMarket = (market_title, market_address) => {
   return {
     type: "마켓선택",
     market_title,
+    market_address,
   };
 };
 
@@ -59,10 +61,13 @@ export const getBookmarks = (bookmarks) => {
   };
 };
 
-export const addBookmarks = (bookmark) => {
+export const addBookmarks = (market_title, market_address) => {
+  console.log("북마크 저장하기 actions", market_title, market_address);
+
   return {
     type: "북마크저장하기",
-    bookmark,
+    market_title,
+    market_address,
   };
 };
 
