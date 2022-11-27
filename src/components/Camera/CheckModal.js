@@ -1,7 +1,14 @@
 import React from "react";
 import { useEffect, useRef } from "react";
 import styles from "./CheckModal.module.css";
+import { useSelector, useDispatch } from "react-redux";
+
+import styled from "styled-components";
+import { pointColor } from "../../styles/GlobalStyles";
+
 function CheckModal({ setModalOpen, id, title, content, writer }) {
+  const getResult = useSelector((state) => state.getDetectionResultsReducer);
+
   // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
     setModalOpen(false);
@@ -31,13 +38,39 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
     };
   });
   return (
-    <div ref={modalRef} className={styles.container}>
-      <button className={styles.close} onClick={closeModal}>
-        X
-      </button>
-      <p>모달창입니다.</p>
+    <div className={styles.modal__background}>
+      <div ref={modalRef} className={styles.container}>
+        <button className={styles.close} onClick={closeModal}>
+          X
+        </button>
+        <p>확인하기</p>
+        <div>이름 : 퍼센트</div>
+        <div>이름 : 퍼센트</div>
+
+        <div>이름 : 퍼센트</div>
+        <div>정말 인식을 완료하시겠습니까?</div>
+        <Button></Button>
+      </div>
     </div>
   );
 }
 
 export default CheckModal;
+
+const Button = styled.button`
+  font-size: 16px;
+  background-color: ${pointColor};
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 0;
+  outline: 0;
+  box-shadow: 2px 2px 4px #b3b3b3;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 80vw;
+  max-width: 232px;
+  height: 40px;
+  border-radius: 12px;
+`;

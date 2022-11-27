@@ -72,3 +72,10 @@ export const getNearMarkets = (nearMarkets) => {
     nearMarkets,
   };
 };
+
+export const getDetectionResults = (results) => {
+  return {
+    type: "인식결과가져오기",
+    results,
+  };
+};
