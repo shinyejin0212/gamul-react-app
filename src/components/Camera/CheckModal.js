@@ -43,11 +43,14 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
         <button className={styles.close} onClick={closeModal}>
           X
         </button>
-        <p>확인하기</p>
-        <div>이름 : 퍼센트</div>
-        <div>이름 : 퍼센트</div>
 
-        <div>이름 : 퍼센트</div>
+        <p className={styles.modal__title}>확인하기</p>
+        <div className={styles.modal__orange_wrap}>
+          <div className={styles.modal__items}>이름 : 퍼센트</div>
+          <div className={styles.modal__items}>이름 : 퍼센트</div>
+
+          <div className={styles.modal__items}>이름 : 퍼센트</div>
+        </div>
         <div>정말 인식을 완료하시겠습니까?</div>
         <Button></Button>
       </div>
