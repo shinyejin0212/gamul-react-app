@@ -26,6 +26,14 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.close::after {
+  content: '\00d7';
+  font-size: 25pt;
 }
 
 .modal__background {
@@ -43,7 +51,7 @@
 }
 
 .modal__items {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   display: flex;
   justify-content: center;
@@ -57,4 +65,11 @@
   background-color: #ffdeca;
   border-radius: 12px;
   padding: 35px;
+  margin: auto;
+}
+
+.modal__verification {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 24px;
 }

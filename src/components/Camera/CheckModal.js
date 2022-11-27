@@ -1,10 +1,10 @@
-import React from "react";
-import { useEffect, useRef } from "react";
-import styles from "./CheckModal.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useEffect, useRef } from 'react';
+import styles from './CheckModal.module.css';
+import { useSelector, useDispatch } from 'react-redux';
 
-import styled from "styled-components";
-import { pointColor } from "../../styles/GlobalStyles";
+import styled from 'styled-components';
+import { pointColor } from '../../styles/GlobalStyles';
 
 function CheckModal({ setModalOpen, id, title, content, writer }) {
   const getResult = useSelector((state) => state.getDetectionResultsReducer);
@@ -28,21 +28,19 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
     };
 
     // 이벤트 핸들러 등록
-    document.addEventListener("mousedown", handler);
+    document.addEventListener('mousedown', handler);
     // document.addEventListener('touchstart', handler); // 모바일 대응
 
     return () => {
       // 이벤트 핸들러 해제
-      document.removeEventListener("mousedown", handler);
+      document.removeEventListener('mousedown', handler);
       // document.removeEventListener('touchstart', handler); // 모바일 대응
     };
   });
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>
-        <button className={styles.close} onClick={closeModal}>
-          X
-        </button>
+        <button className={styles.close} onClick={closeModal}></button>
 
         <p className={styles.modal__title}>확인하기</p>
         <div className={styles.modal__orange_wrap}>
@@ -51,7 +49,7 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
 
           <div className={styles.modal__items}>이름 : 퍼센트</div>
         </div>
-        <div>정말 인식을 완료하시겠습니까?</div>
+        <div className={styles.modal__verification}>정말 인식을 완료하시겠습니까?</div>
         <Button></Button>
       </div>
     </div>
@@ -64,16 +62,16 @@ const Button = styled.button`
   font-size: 16px;
   background-color: ${pointColor};
   color: white;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
   border-radius: 12px;
   border: 0;
   outline: 0;
   box-shadow: 2px 2px 4px #b3b3b3;
-  margin-top: 12px;
+  margin-top: 4px;
   margin-bottom: 12px;
   width: 80vw;
   max-width: 232px;
-  height: 40px;
+  height: 4rem;
   border-radius: 12px;
 `;

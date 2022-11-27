@@ -1,13 +1,13 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Title } from "../../styles/styles";
-import SubmitButton from "../../components/Button/SubmitButton.js";
-import { Link } from "react-router-dom";
-import axios from "../../api/axios";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Title } from '../../styles/styles';
+import SubmitButton from '../../components/Button/SubmitButton.js';
+import { Link } from 'react-router-dom';
+import axios from '../../api/axios';
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import styled from "styled-components";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import styled from 'styled-components';
 
 export default function SignUp() {
   const PasswordPattern =
@@ -15,23 +15,20 @@ export default function SignUp() {
   const schema = yup
     .object()
     .shape({
-      nickname: yup
-        .string()
-        .required("이름을 입력해주세요 😰")
-        .min(2, "2자 이상 입력해주세요 😰"),
+      nickname: yup.string().required('이름을 입력해주세요 😰').min(2, '2자 이상 입력해주세요 😰'),
       email: yup
         .string()
-        .required("이메일을 입력해주세요 😰")
-        .email("올바른 이메일 형식을 입력해주세요 😰"),
-      password: yup.string().required("비밀번호를 입력해주세요 😰").matches(
+        .required('이메일을 입력해주세요 😰')
+        .email('올바른 이메일 형식을 입력해주세요 😰'),
+      password: yup.string().required('비밀번호를 입력해주세요 😰').matches(
         PasswordPattern, //영문+숫자 혹은 영문+특수문자
-        "8자 이상 영문, 숫자, 특수문자 중 가지 이상을 조합해야 합니다."
+        '8자 이상 영문, 숫자, 특수문자 중 가지 이상을 조합해야 합니다.'
       ),
 
       checkpassword: yup
         .string()
-        .required("비밀번호를 확인하세요 😰")
-        .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다 😰"),
+        .required('비밀번호를 확인하세요 😰')
+        .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다 😰'),
     })
     .required();
 
@@ -41,18 +38,18 @@ export default function SignUp() {
     register,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      nickname: "",
-      email: "",
-      password: "",
-      checkpassword: "",
+      nickname: '',
+      email: '',
+      password: '',
+      checkpassword: '',
     },
   });
 
   const onValid = async (data) => {
     // alert(JSON.stringify(data));/
-    console.log(data, "onvalid");
+    console.log(data, 'onvalid');
 
     try {
       await axios.post(`/auth/signup`, {
@@ -60,17 +57,17 @@ export default function SignUp() {
         email: data.email,
         password: data.password,
       });
-      window.location.href = "/";
+      window.location.href = '/';
     } catch (e) {
       console.log(e);
     }
   };
-  const onInvalid = (data) => console.log(data, "onInvalid");
+  const onInvalid = (data) => console.log(data, 'onInvalid');
 
   return (
     <div
       style={{
-        whiteSpace: "nowrap",
+        whiteSpace: 'nowrap',
         // display: "flex",
         // justifyContent: "center",
         // alignItems: "center",
@@ -91,7 +88,7 @@ export default function SignUp() {
             </div>
             <InputBlank
               placeholder="닉네임을 입력해주세요"
-              {...register("nickname", { required: true })}
+              {...register('nickname', { required: true })}
             />
           </div>
           <div style={wrapInput}>
@@ -103,7 +100,7 @@ export default function SignUp() {
             </div>
             <InputBlank
               placeholder="이메일을 입력해주세요"
-              {...register("email", { required: true })}
+              {...register('email', { required: true })}
             />
           </div>
           <div style={wrapInput}>
@@ -117,7 +114,7 @@ export default function SignUp() {
             <InputBlank
               type="password"
               placeholder="비밀번호를 입력해주세요 (영어+숫자 or 특수문자 8자 이상)"
-              {...register("password", { required: true })}
+              {...register('password', { required: true })}
             />
           </div>
           <div style={wrapInput}>
@@ -130,7 +127,7 @@ export default function SignUp() {
             <InputBlank
               type="password"
               placeholder="비밀번호를 다시 입력해주세요"
-              {...register("checkpassword", { required: true })}
+              {...register('checkpassword', { required: true })}
             />
           </div>
           <SubmitButton title="가입 완료하기" />
@@ -138,7 +135,7 @@ export default function SignUp() {
         <br></br>
         <div
           style={{
-            fontSize: "12px",
+            fontSize: '12px',
           }}
         >
           이미 계정이 있으신가요?
@@ -146,10 +143,10 @@ export default function SignUp() {
         <Link
           to="/login"
           style={{
-            marginLeft: "5px",
-            color: "black",
-            fontWeight: "600",
-            fontSize: "12px",
+            marginLeft: '5px',
+            color: 'black',
+            fontWeight: '600',
+            fontSize: '12px',
           }}
         >
           로그인하기
@@ -175,29 +172,31 @@ const InputBlank = styled.input`
 `;
 
 const wrapInput = {
-  paddingBottom: "0.5vh",
+  paddingBottom: '0.5vh',
+  display: 'flex',
+  flexDirection: 'column',
 };
 
 const explain = {
-  fontWeight: "500",
-  fontSize: "12px",
-  padding: "10px",
-  marginBottom: "15px",
+  fontWeight: '500',
+  fontSize: '12px',
+  padding: '10px',
+  marginBottom: '15px',
 };
 
 const secondtitle = {
-  fontWeight: "500",
-  fontSize: "15px",
-  textAlign: "left",
-  margin: "auto",
-  width: "80vw",
-  maxWidth: "354px",
+  fontWeight: '500',
+  fontSize: '15px',
+  textAlign: 'left',
+  margin: 'auto',
+  width: '80vw',
+  maxWidth: '354px',
 };
 
 const validation = {
-  color: "red",
-  fontSize: "12px",
-  float: "right",
-  textDecoration: "none",
-  whiteSpace: "normal",
+  color: 'red',
+  fontSize: '12px',
+  float: 'right',
+  textDecoration: 'none',
+  whiteSpace: 'normal',
 };
