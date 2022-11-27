@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
+import axios from "axios";
 
 const webCamWrap = {
   width: "375px",
@@ -80,13 +81,31 @@ function WebCam() {
     setModalOpen(true);
   };
 
-  const sendImage = () => {
+  const sendImage = async () => {
     setFormData(convertBase64IntoFile(img, "object.jpeg"));
 
     console.log(formdata);
     showModal();
 
     // axios 요청 보내기
+
+    try {
+      await axios.post(
+        `/product`, //주소 바꿔야할 듯
+        {
+          name: formdata.name,
+          data: formdata,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            // Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+          },
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

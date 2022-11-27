@@ -65,3 +65,10 @@ export const addBookmarks = (bookmark) => {
     bookmark,
   };
 };
+
+export const getNearMarkets = (nearMarkets) => {
+  return {
+    type: "가까운마트가격가져오기",
+    nearMarkets,
+  };
+};

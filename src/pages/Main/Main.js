@@ -42,18 +42,36 @@ function Main() {
 
   const fetchBookmarks = async () => {
     await axios
-      .get(`/api/bookmark`, {
+      .get(`/bookmark`, {
         headers: {
           // "Content-Type": "application/json",
           Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
         },
       })
       .then((response) => {
-        console.log("여기임", response.data.data.market);
-        setBookmarks(response.data.data.market);
-        dispatch(getBookmarks(response.data.data.market));
+        console.log("여기임", response.data.data);
+        setBookmarks(response.data.data);
+        dispatch(getBookmarks(response.data.data));
       })
       .catch((error) => console.log("Network Error : ", error));
+  };
+
+  const fetchNearMarkets = async () => {
+    console.log(selectedMarket);
+    await axios
+      .get(`/market`, {
+        params: {
+          market: selectedMarket,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((response) => {
+        console.log("fetchNearMarkets", response.data);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -157,7 +175,9 @@ function Main() {
             textDecoration: "underline",
           }}
           disabled={disabled}
-          onClick={() => (window.location.href = "/near_market_list")}
+          onClick={() =>
+            fetchNearMarkets()((window.location.href = "/near_market_list"))
+          }
         >
           <div>
             {selectedMarket ? (

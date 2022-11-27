@@ -1,6 +1,5 @@
 import React from "react";
 import WebCam from "../../components/Camera/WebCam";
-import styled from "styled-components";
 
 function ObjectDetection() {
   return (

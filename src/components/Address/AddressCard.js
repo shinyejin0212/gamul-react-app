@@ -3,10 +3,10 @@ import pin_icon from "../../assets/icons/pin_icon.png";
 import { useDispatch } from "react-redux";
 import { selectMarket } from "../../actions/action";
 
-function AddressCard({ title }) {
+function AddressCard({ title, address }) {
   const dispatch = useDispatch();
 
-  const clickBookmark = (title) => {
+  const clickBookmark = (title, address) => {
     console.log("addresslist 클릭됨", title);
     dispatch(selectMarket(title));
   };
@@ -36,9 +36,9 @@ function AddressCard({ title }) {
 
         <a style={{ lineHeight: "38px" }}> {title}</a>
       </div>
-      {/* <div style={{ color: "gray", fontSize: 13, textIndent: 22 }}>
+      <div style={{ color: "gray", fontSize: 13, textIndent: 22 }}>
         {address}
-      </div> */}
+      </div>
       <hr
         style={{
           borderStyle: "solid",

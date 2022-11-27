@@ -55,7 +55,7 @@ export default function SignUp() {
     console.log(data, "onvalid");
 
     try {
-      await axios.post(`/api/auth/signup`, {
+      await axios.post(`/auth/signup`, {
         name: data.nickname,
         email: data.email,
         password: data.password,

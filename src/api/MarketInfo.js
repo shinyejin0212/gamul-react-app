@@ -1,6 +1,6 @@
 export const marketdata = [
   {
-    marekt_name: "이마트용산점",
+    marekt_name: "이마트 용산점",
     latitude: 37.57096169, //이거 가짜임
     longitude: 126.9984922,
     address: "광장시장 어쩌구임",
