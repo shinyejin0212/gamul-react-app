@@ -49,9 +49,9 @@ function Main() {
         },
       })
       .then((response) => {
-        console.log("여기임", response.data.data);
-        setBookmarks(response.data.data);
-        dispatch(getBookmarks(response.data.data));
+        console.log("여기임Main", response.data.data.market);
+        setBookmarks(response.data.data.marekt);
+        dispatch(getBookmarks(response.data.data.market));
       })
       .catch((error) => console.log("Network Error : ", error));
   };
