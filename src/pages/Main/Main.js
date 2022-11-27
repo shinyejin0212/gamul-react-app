@@ -19,38 +19,8 @@ import Button from "@mui/material/Button";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { MoveBookMark, MoveMap } from "../../actions/action";
-
-export const BagIcon = styled.img`
-  width: 50px;
-  margin: 0px;
-`;
-
-export const CartIcon = styled.img`
-  width: 80px;
-  margin: 10px;
-`;
-
-const Root = styled("div")(() => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "100vh",
-}));
-
-const StyledBox = styled(Box)(() => ({
-  backgroundColor: "white",
-}));
-
-const Puller = styled(Box)(() => ({
-  width: 30,
-  height: 6,
-  backgroundColor: "#dadada",
-  borderRadius: 3,
-  position: "absolute",
-  top: 8,
-  left: "calc(50% - 15px)",
-}));
+import { MoveBookMark, MoveMap, getBookmarks } from "../../actions/action";
+import axios from "../../api/axios";
 
 function Main() {
   const [open, setOpen] = useState(false);
@@ -58,10 +28,50 @@ function Main() {
   const position = selectedMarket ? selectedMarket : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
+  const [flag, setflag] = useState(true);
+  const [bookmarks, setBookmarks] = useState([]);
+  const token = useSelector((state) => state.authToken);
 
   const toggleDrawer = (newOpen) => () => {
+    fetchBookmarks();
+
+    setflag(false);
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
+  };
+
+  const fetchBookmarks = async () => {
+    await axios
+      .get(`/bookmark`, {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((response) => {
+        console.log("여기임", response.data.data);
+        setBookmarks(response.data.data);
+        dispatch(getBookmarks(response.data.data));
+      })
+      .catch((error) => console.log("Network Error : ", error));
+  };
+
+  const fetchNearMarkets = async () => {
+    console.log(selectedMarket);
+    await axios
+      .get(`/market`, {
+        params: {
+          market: selectedMarket,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((response) => {
+        console.log("fetchNearMarkets", response.data);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -88,11 +98,10 @@ function Main() {
         <Button
           onClick={toggleDrawer(true)}
           sx={{
-            fontSize: "16p",
             backgroundColor: selectedMarket ? "white" : pointColor,
             color: selectedMarket ? pointColor : "white",
             fontWeight: "900",
-            fontSize: "14px",
+            fontSize: "16px",
             fontStyle: "italic",
 
             borderRadius: "12px",
@@ -104,7 +113,6 @@ function Main() {
             marginBottom: "12px",
             width: "162px",
             height: "30px",
-            borderRadius: "12px",
           }}
         >
           {position}
@@ -116,7 +124,7 @@ function Main() {
             backgroundColor: selectedMarket ? "#ffdeca" : "white",
             color: pointColor,
             fontWeight: "600",
-            fontSize: "16px",
+
             borderRadius: "12px",
             border: "0",
             outline: "0",
@@ -126,7 +134,6 @@ function Main() {
             maxWidth: "254px",
             height: "254px",
             maxHeight: "25vh",
-            borderRadius: "12px",
             textDecoration: "underline",
           }}
           disabled={disabled}
@@ -155,7 +162,6 @@ function Main() {
             backgroundColor: selectedMarket ? "#f9f7f5" : "white",
             color: "#828282",
             fontWeight: "600",
-            fontSize: "16px",
             borderRadius: "12px",
             border: "0",
             outline: "0",
@@ -165,12 +171,13 @@ function Main() {
             maxWidth: "254px",
             height: "150px",
             maxHeight: "15vh",
-            borderRadius: "12px",
 
             textDecoration: "underline",
           }}
           disabled={disabled}
-          onClick={() => (window.location.href = "/near_market_list")}
+          onClick={() =>
+            fetchNearMarkets()((window.location.href = "/near_market_list"))
+          }
         >
           <div>
             {selectedMarket ? (
@@ -233,3 +240,34 @@ function Main() {
 }
 
 export default Main;
+
+export const BagIcon = styled.img`
+  width: 50px;
+  margin: 0px;
+`;
+
+export const CartIcon = styled.img`
+  width: 80px;
+  margin: 10px;
+`;
+
+const Root = styled("div")(() => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+}));
+
+const StyledBox = styled(Box)(() => ({
+  backgroundColor: "white",
+}));
+
+const Puller = styled(Box)(() => ({
+  width: 30,
+  height: 6,
+  backgroundColor: "#dadada",
+  borderRadius: 3,
+  position: "absolute",
+  top: 8,
+  left: "calc(50% - 15px)",
+}));

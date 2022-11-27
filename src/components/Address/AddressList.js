@@ -1,16 +1,26 @@
 import React from "react";
 import dummy from "../../api/LikeAddress.json";
 import AddressCard from "./AddressCard";
+import { useSelector, useDispatch } from "react-redux";
+import { selectMarket } from "../../actions/action";
 export default function AddressList() {
+  const bookmarks = useSelector((state) => state.getBookMarkReducer);
+  console.log("addresslist", bookmarks.market);
+  const dispatch = useDispatch();
+
+  console.log("이거는", bookmarks.market);
+
   return (
-    <>
-      {dummy.LikeAddressList.map((LikeAddress) => (
+    <div>
+      {bookmarks.market.map((bookmark, idx) => (
         <AddressCard
-          key={LikeAddress.id}
-          title={LikeAddress.title}
-          address={LikeAddress.address}
-          latitude={LikeAddress.latitude}
-          lontitude={LikeAddress.lontitude}
+          // onClick={(e) => {
+          //   console.log("좀");
+          //   clickBookmark(bookmark);
+          // }}
+          key={idx}
+          title={bookmark.name}
+          address={bookmark.region}
 
           //   title={LikeAddress.title}
           //   address={LikeAddress.address}
@@ -18,6 +28,6 @@ export default function AddressList() {
           //   lontitude={LikeAddress.lontitude}
         />
       ))}
-    </>
+    </div>
   );
 }

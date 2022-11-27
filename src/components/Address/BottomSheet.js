@@ -4,54 +4,93 @@ import Button from "@mui/material/Button";
 import KakaoMap from "./KakaoMap";
 import useGeoLocation from "../../hooks/useGeolocation.tsx";
 import AddressList from "./AddressList";
-
+import { pointColor } from "../../styles/GlobalStyles";
+import axios from "../../api/axios";
 import {
-  increment,
-  decrement,
   selectMarket,
   MoveBookMark,
   MoveMap,
+  addBookmarks,
 } from "../../actions/action";
 
-function BottomSheet() {
+function BottomSheet({}) {
   const currentLocation = useGeoLocation();
-  const [market, setMarket] = useState(null);
+  const [market, setMarket] = useState("");
 
   const onClickCurrent = () => {
     dispatch(MoveMap());
   };
 
-  const counter = useSelector((state) => state.counterReducer);
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
   const move = useSelector((state) => state.BookMarkOrMapReducer);
 
   const dispatch = useDispatch();
 
-  const onClickChoice = () => {
+  const token = useSelector((state) => state.authToken);
+  const onClickChoice = async () => {
     dispatch(selectMarket(clickMarker));
     dispatch(MoveBookMark());
     setMarket(selectedMarket);
+    dispatch(addBookmarks(selectedMarket));
+
+    try {
+      await axios.post(
+        `/bookmark`,
+        {
+          market: market,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+          },
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const onIncrease = () => {
-    dispatch(increment());
-  };
-
-  const onDecrease = () => {
-    dispatch(decrement());
-  };
-
-  return move == false ? (
+  return move === false ? (
     <>
-      <div>주소설정</div>
-      {market} {/*수정 해야함  */}
-      <Button onClick={onClickCurrent}>현재 위치로 설정</Button>
-      <hr></hr>
+      <div
+        style={{
+          fontWeight: "900",
+          fontSize: "20px",
+          textAlign: "center",
+          fontStyle: "oblique",
+        }}
+      >
+        주소설정
+      </div>
+      {/* {market} 수정 해야함  */}
+      <Button
+        onClick={onClickCurrent}
+        sx={{
+          fontSize: "16p",
+          backgroundColor: pointColor,
+          color: "white",
+          fontWeight: "900",
+          fontSize: "14px",
+
+          borderRadius: "12px",
+          border: "0",
+          outline: "0",
+          boxShadow: "2px 2px 4px #b3b3b3",
+
+          marginTop: "12px",
+          marginBottom: "12px",
+          width: "130px",
+          height: "30px",
+          borderRadius: "12px",
+        }}
+      >
+        현재 위치로 설정
+      </Button>
+      <hr style={{ backgroundColor: "#E2E2E2", height: 10, border: 0 }} />
+      <br></br>
       <AddressList />
-      {counter}
-      <Button onClick={onIncrease}>+1</Button>
-      <Button onClick={onDecrease}>-1</Button>
     </>
   ) : (
     <>

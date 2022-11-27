@@ -53,48 +53,6 @@ function nearMartList() {
           <SwiperSlide>
             <FoodCategory key="1" props="고등어" />
           </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="2" props="사과2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="3" props="사과3" />
-          </SwiperSlide>{" "}
-          <SwiperSlide>
-            <FoodCategory key="1" props="고등어" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="2" props="사과2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="3" props="사과3" />
-          </SwiperSlide>{" "}
-          <SwiperSlide>
-            <FoodCategory key="1" props="고등어" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="2" props="사과2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="3" props="사과3" />
-          </SwiperSlide>{" "}
-          <SwiperSlide>
-            <FoodCategory key="1" props="고등어" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="2" props="사과2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="3" props="사과3" />
-          </SwiperSlide>{" "}
-          <SwiperSlide>
-            <FoodCategory key="1" props="고등어" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="2" props="사과2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <FoodCategory key="3" props="사과3" />
-          </SwiperSlide>
         </Swiper>
       </div>
     </div>

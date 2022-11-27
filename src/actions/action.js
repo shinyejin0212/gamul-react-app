@@ -40,14 +40,42 @@ export const MoveMap = () => {
 
 export const setImageBase24 = (imagebase24) => {
   return {
-    tyep: "Base24이미지저장",
+    type: "Base24이미지저장",
     imagebase24,
   };
 };
 
 export const setImageForm = (imageform) => {
   return {
-    tyep: "Form이미지저장",
+    type: "Form이미지저장",
     imageform,
+  };
+};
+
+export const getBookmarks = (bookmarks) => {
+  return {
+    type: "북마크가져오기",
+    bookmarks,
+  };
+};
+
+export const addBookmarks = (bookmark) => {
+  return {
+    type: "북마크저장하기",
+    bookmark,
+  };
+};
+
+export const getNearMarkets = (nearMarkets) => {
+  return {
+    type: "가까운마트가격가져오기",
+    nearMarkets,
+  };
+};
+
+export const getDetectionResults = (results) => {
+  return {
+    type: "인식결과가져오기",
+    results,
   };
 };

@@ -2,16 +2,12 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
-
-const webCamWrap = {
-  width: "375px",
-  height: "496px",
-  padding: "5px",
-  backgroundColor: "black",
-  borderRadius: "20px",
-};
+import axios from "../../api/axios";
+import { useDispatch } from "react-redux";
+import { getDetectionResults } from "../../actions/action";
 
 function WebCam() {
+  const dispatch = useDispatch();
   const [img, setImg] = useState(null);
   const [formdata, setFormData] = useState(null);
   // const [modalOpen, setModalOpen, clickRef] = useModalClose(false);/
@@ -80,13 +76,32 @@ function WebCam() {
     setModalOpen(true);
   };
 
-  const sendImage = () => {
+  const sendImage = async () => {
     setFormData(convertBase64IntoFile(img, "object.jpeg"));
 
     console.log(formdata);
     showModal();
 
     // axios 요청 보내기
+
+    await axios
+      .post(
+        `/product`, //주소 바꿔야할 듯
+        {
+          data: formdata,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            // Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+          },
+        }
+      )
+      .then((response) => {
+        console.log("webCam107", response.data);
+        dispatch(getDetectionResults(response.data.data)); //여기 데이터 형식 확인 후 수정해야함
+      })
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
@@ -110,28 +125,41 @@ function WebCam() {
           </div>
         </>
       ) : (
-        <>
-          <img
-            src={img}
-            alt="screenshot"
-            style={{ width: "338px", height: "auto" }}
-          />
-
+        <div>
+          <div style={webCamWrap}>
+            <img
+              src={img}
+              alt="screenshot"
+              style={{
+                width: "338px",
+                height: "auto",
+              }}
+            />
+          </div>
           <div>
             <Button onClick={() => setImg(null)}>Retake</Button>
-          </div>
-
-          <div>
             <Button onClick={sendImage}>전송하기</Button>
             {modalOpen && (
               <CheckModal setModalOpen={setModalOpen} />
               // clickRef={clickRef}
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
 }
 
 export default WebCam;
+
+const webCamWrap = {
+  width: "375px",
+  height: "496px",
+  padding: "5px",
+  backgroundColor: "black",
+  borderRadius: "20px",
+
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};

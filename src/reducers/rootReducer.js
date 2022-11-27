@@ -4,6 +4,7 @@ import clickMarkerReducer from "./clickMarkerReducer";
 import selectMarketReducer from "./selectMarketReducer";
 import BookMarkOrMapReducer from "./BookMarkOrMapReducer";
 import ImageReducer from "./ImageReducer";
+import getBookMarkReducer from "./getBookMarkReducer";
 import tokenReducer from "../storage/Auth";
 
 const rootReducer = combineReducers({
@@ -13,5 +14,6 @@ const rootReducer = combineReducers({
   BookMarkOrMapReducer,
   ImageReducer,
   authToken: tokenReducer,
+  getBookMarkReducer,
 });
 export default rootReducer;
