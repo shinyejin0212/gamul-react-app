@@ -61,15 +61,15 @@ export const getBookmarks = (bookmarks) => {
   };
 };
 
-export const addBookmarks = (market_title, market_address) => {
-  console.log("북마크 저장하기 actions", market_title, market_address);
+// export const addBookmarks = (market_title, market_address) => {
+//   console.log("북마크 저장하기 actions", market_title, market_address);
 
-  return {
-    type: "북마크저장하기",
-    market_title,
-    market_address,
-  };
-};
+//   return {
+//     type: "북마크저장하기",
+//     market_title,
+//     market_address,
+//   };
+// };
 
 export const getNearMarkets = (nearMarkets) => {
   return {

@@ -29,31 +29,13 @@ function Main() {
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
   const [flag, setflag] = useState(true);
-  const [bookmarks, setBookmarks] = useState([]);
+
   const token = useSelector((state) => state.authToken);
 
   const toggleDrawer = (newOpen) => () => {
-    fetchBookmarks();
-
     setflag(false);
     setOpen(newOpen);
     newOpen ? dispatch(MoveBookMark()) : dispatch(MoveMap());
-  };
-
-  const fetchBookmarks = async () => {
-    await axios
-      .get(`/bookmark`, {
-        headers: {
-          // "Content-Type": "application/json",
-          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
-        },
-      })
-      .then((response) => {
-        console.log("여기임Main", response.data.data.market);
-        setBookmarks(response.data.data.marekt);
-        dispatch(getBookmarks(response.data.data.market));
-      })
-      .catch((error) => console.log("Network Error : ", error));
   };
 
   const fetchNearMarkets = async () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import KakaoMap from "./KakaoMap";
@@ -10,36 +10,55 @@ import {
   selectMarket,
   MoveBookMark,
   MoveMap,
-  addBookmarks,
+  getBookmarks,
 } from "../../actions/action";
 
 function BottomSheet({}) {
   const currentLocation = useGeoLocation();
   const [market, setMarket] = useState("");
+  const [error, setError] = useState(null);
 
   const onClickCurrent = () => {
     dispatch(MoveMap());
   };
 
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
-  const selectedMarket = useSelector((state) => state.selectMarketReducer);
+  // const selectedMarket = useSelector((state) => state.selectMarketReducer);
   const move = useSelector((state) => state.BookMarkOrMapReducer);
 
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.authToken);
-  const onClickChoice = async () => {
-    dispatch(selectMarket(clickMarker[0], clickMarker[1]));
-    dispatch(MoveBookMark());
-    setMarket(selectedMarket[0]);
-    console.log("selectMarket 35", selectedMarket[0]);
-    dispatch(addBookmarks(selectedMarket[0], selectedMarket[1]));
 
+  const [bookmarks, setBookmarks] = useState([]);
+  const fetchBookmarks = async () => {
+    await axios
+      .get(`/bookmark`, {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((response) => {
+        setBookmarks(response.data.data.marekt);
+        dispatch(getBookmarks(response.data.data.market));
+      })
+      .catch((error) => console.log("Network Error : ", error));
+  };
+
+  useEffect(() => {
+    if (move == 0) {
+      fetchBookmarks();
+      console.log("fetch됨");
+    }
+  }, [move]);
+
+  const setBookmark = async (selected_market) => {
     try {
       await axios.post(
         `/bookmark`,
         {
-          market: market,
+          market: selected_market,
         },
         {
           headers: {
@@ -48,9 +67,19 @@ function BottomSheet({}) {
           },
         }
       );
-    } catch (e) {
-      console.log(e);
+      dispatch(MoveBookMark());
+    } catch (error) {
+      setError(error);
+      console.log(error.response);
     }
+  };
+  const onClickChoice = () => {
+    dispatch(selectMarket(clickMarker[0], clickMarker[1]));
+
+    setMarket(clickMarker[0]);
+    console.log("selectMarket 35", clickMarker[0]);
+
+    setBookmark(clickMarker[0]);
   };
 
   return move === false ? (

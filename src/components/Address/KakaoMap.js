@@ -92,7 +92,7 @@ function KakaoMap(position) {
   };
 
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
-  console.log("clcikmarker", clickMarker);
+  console.log("KaKaomap임clcikmarker :", clickMarker);
   const dispatch = useDispatch();
 
   const getMarker = () => {
