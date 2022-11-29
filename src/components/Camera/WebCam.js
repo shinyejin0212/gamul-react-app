@@ -5,6 +5,9 @@ import CheckModal from "../Camera/CheckModal";
 import axios from "../../api/axios";
 import { useDispatch } from "react-redux";
 import { getDetectionResults } from "../../actions/action";
+import { BsArrowCounterclockwise } from "react-icons/bs";
+import { FiSend } from "react-icons/fi";
+import { pointColor } from "../../styles/GlobalStyles";
 
 function WebCam() {
   const dispatch = useDispatch();
@@ -23,6 +26,7 @@ function WebCam() {
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
+    setFormData(convertBase64IntoFile(img, "object.jpeg"));
   }, [webcamRef]);
 
   const getWebcam = () => {
@@ -62,7 +66,7 @@ function WebCam() {
   //파일 base64 형식에서 File 형식으로 디코딩 변환
   const convertBase64IntoFile = (image, fileName) => {
     const mimeType = image?.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0]; // image/jpeg
-    const realData = image.split(",")[1]; // 이 경우에선 /9j/4AAQSkZJRgABAQAAAQABAAD...
+    const realData = image?.split(",")[1]; // 이 경우에선 /9j/4AAQSkZJRgABAQAAAQABAAD...
 
     const blob = b64toBlob(realData, mimeType);
     const raw = new File([blob], fileName, { type: mimeType });
@@ -77,9 +81,8 @@ function WebCam() {
   };
 
   const sendImage = async () => {
-    // setFormData();
-
-    console.log("formdata", formdata);
+    console.log(formdata);
+    showModal();
 
     // axios 요청 보내기
 
@@ -92,13 +95,12 @@ function WebCam() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-
             // Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
           },
         }
       )
       .then((response) => {
-        console.log("webCam107", response.data.data);
+        console.log("webCam107", response.data);
         dispatch(getDetectionResults(response.data.data)); //여기 데이터 형식 확인 후 수정해야함
 
         showModal();
@@ -123,7 +125,7 @@ function WebCam() {
             // videoConstraints={videoConstraints} //후면 카메라 사용
           />
           <div>
-            <Button onClick={capture}>Capture photo</Button>
+            <Button onClick={capture} style={captureButton}></Button>
           </div>
         </>
       ) : (
@@ -139,8 +141,12 @@ function WebCam() {
             />
           </div>
           <div>
-            <Button onClick={() => setImg(null)}>Retake</Button>
-            <Button onClick={sendImage}>전송하기</Button>
+            <Button onClick={() => setImg(null)} style={retakeButton}>
+              <BsArrowCounterclockwise />
+            </Button>
+            <Button onClick={sendImage} style={transmitButton}>
+              <FiSend />
+            </Button>
             {modalOpen && (
               <CheckModal setModalOpen={setModalOpen} />
               // clickRef={clickRef}
@@ -156,7 +162,7 @@ export default WebCam;
 
 const webCamWrap = {
   width: "375px",
-  height: "496px",
+  height: "596px",
   padding: "5px",
   backgroundColor: "black",
   borderRadius: "20px",
@@ -164,4 +170,43 @@ const webCamWrap = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  position: "relative",
+};
+
+const captureButton = {
+  margin: "auto",
+  width: "65px",
+  height: "65px",
+  backgroundColor: "white",
+  borderRadius: "50%",
+  border: "0.2rem solid black",
+  outline: "0.3rem solid white",
+
+  position: "absolute",
+  bottom: "24%",
+  left: "40%",
+  right: "40%",
+};
+
+const retakeButton = {
+  fontSize: "30px",
+  color: pointColor,
+
+  position: "absolute",
+  bottom: "24%",
+  left: "50%",
+  transform: "translate(-200%)",
+
+  margin: "20px",
+};
+const transmitButton = {
+  fontSize: "30px",
+  color: pointColor,
+
+  position: "absolute",
+  bottom: "24%",
+  right: "50%",
+  transform: "translate(200%)",
+
+  margin: "20px",
 };
