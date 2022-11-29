@@ -1,10 +1,10 @@
-import React from 'react';
-import { useEffect, useRef } from 'react';
-import styles from './CheckModal.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useEffect, useRef } from "react";
+import styles from "./CheckModal.module.css";
+import { useSelector, useDispatch } from "react-redux";
 
-import styled from 'styled-components';
-import { pointColor } from '../../styles/GlobalStyles';
+import styled from "styled-components";
+import { pointColor } from "../../styles/GlobalStyles";
 
 function CheckModal({ setModalOpen, id, title, content, writer }) {
   const getResult = useSelector((state) => state.getDetectionResultsReducer);
@@ -28,15 +28,17 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
     };
 
     // 이벤트 핸들러 등록
-    document.addEventListener('mousedown', handler);
+    document.addEventListener("mousedown", handler);
     // document.addEventListener('touchstart', handler); // 모바일 대응
 
     return () => {
       // 이벤트 핸들러 해제
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener("mousedown", handler);
       // document.removeEventListener('touchstart', handler); // 모바일 대응
     };
   });
+
+  const sendResults = () => {};
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>
@@ -44,13 +46,17 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
 
         <p className={styles.modal__title}>확인하기</p>
         <div className={styles.modal__orange_wrap}>
-          <div className={styles.modal__items}>이름 : 퍼센트</div>
+          <div className={styles.modal__items}>
+            {/* {getResult.name} : {getResult.confidence} */}
+          </div>
           <div className={styles.modal__items}>이름 : 퍼센트</div>
 
           <div className={styles.modal__items}>이름 : 퍼센트</div>
         </div>
-        <div className={styles.modal__verification}>정말 인식을 완료하시겠습니까?</div>
-        <Button></Button>
+        <div className={styles.modal__verification}>
+          정말 인식을 완료하시겠습니까?
+        </div>
+        <Button onClick={sendResults}>확인 완료하기</Button>
       </div>
     </div>
   );

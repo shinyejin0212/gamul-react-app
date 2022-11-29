@@ -26,6 +26,7 @@ function WebCam() {
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
+    setFormData(convertBase64IntoFile(img, 'object.jpeg'));
   }, [webcamRef]);
 
   const getWebcam = () => {
@@ -89,7 +90,7 @@ function WebCam() {
 
     await axios
       .post(
-        `/product`, //주소 바꿔야할 듯
+        '/product', //주소 바꿔야할 듯
         {
           data: formdata,
         },

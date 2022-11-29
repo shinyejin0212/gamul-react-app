@@ -92,6 +92,7 @@ function KakaoMap(position) {
   };
 
   const clickMarker = useSelector((state) => state.clickMarkerReducer);
+  console.log("KaKaomap임clcikmarker :", clickMarker);
   const dispatch = useDispatch();
 
   const getMarker = () => {
@@ -110,7 +111,7 @@ function KakaoMap(position) {
       marker.setMap(kakaoMap);
 
       kakao.maps.event.addListener(marker, "click", function () {
-        sendTitle(marker.Gb);
+        sendTitle(marker.Gb, market.address);
       });
     });
   };
@@ -120,8 +121,8 @@ function KakaoMap(position) {
   //   setTitle(title);
   // };
 
-  const sendTitle = (new_title) => {
-    dispatch(sendMarket(new_title));
+  const sendTitle = (new_title, new_address) => {
+    dispatch(sendMarket(new_title, new_address));
   };
 
   useEffect(() => {
