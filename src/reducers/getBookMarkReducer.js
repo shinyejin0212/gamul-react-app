@@ -5,9 +5,17 @@ const getBookMarkReducer = (state = initialState, action) => {
     case "북마크가져오기":
       state = action.bookmarks;
       console.log("getBookMarkReducer", state);
-      return [...state];
+      return state;
     // case "북마크저장하기":
-    //   return {...state, action.bookmark};
+    //   console.log("북마크 저장하기", ...state, {
+    //     name: action.market_title,
+    //     region: action.market_address,
+    //   });
+
+    //   return [
+    //     ...state,
+    //     { name: action.market_title, region: action.market_address },
+    //   ];
     default:
       return state;
   }

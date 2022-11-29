@@ -9,8 +9,6 @@ export default function AddressList() {
   console.log("addresslist", bookmarks);
   const dispatch = useDispatch();
 
-  console.log("이거는", bookmarks);
-
   return (
     <div>
       {bookmarks &&
