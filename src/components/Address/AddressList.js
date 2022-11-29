@@ -1,13 +1,11 @@
 import React from "react";
 import dummy from "../../api/LikeAddress.json";
 import AddressCard from "./AddressCard";
-import { useSelector, useDispatch } from "react-redux";
-import { selectMarket } from "../../actions/action";
+import { useSelector } from "react-redux";
 
 export default function AddressList() {
   const bookmarks = useSelector((state) => state.getBookMarkReducer);
   console.log("addresslist", bookmarks);
-  const dispatch = useDispatch();
 
   return (
     <div>

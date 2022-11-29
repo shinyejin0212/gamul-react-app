@@ -5,6 +5,7 @@ import selectMarketReducer from "./selectMarketReducer";
 import BookMarkOrMapReducer from "./BookMarkOrMapReducer";
 import ImageReducer from "./ImageReducer";
 import getBookMarkReducer from "./getBookMarkReducer";
+import getDetectionResultsReducer from "./getDetectionResultsReducer";
 import tokenReducer from "../storage/Auth";
 
 const rootReducer = combineReducers({
@@ -15,5 +16,6 @@ const rootReducer = combineReducers({
   ImageReducer,
   authToken: tokenReducer,
   getBookMarkReducer,
+  getDetectionResultsReducer,
 });
 export default rootReducer;
