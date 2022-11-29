@@ -7,9 +7,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper";
+import { useSelector, useDispatch } from "react-redux";
 
 function nearMartList() {
   const id = 1; //수정하기
+  const token = useSelector((state) => state.authToken);
+  console.log(token);
+
   return (
     <div
       style={{

@@ -3,13 +3,16 @@ import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
 import axios from "../../api/axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDetectionResults } from "../../actions/action";
 import { BsArrowCounterclockwise } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import { pointColor } from "../../styles/GlobalStyles";
 
 function WebCam() {
+  const token = useSelector((state) => state.authToken);
+  console.log(token);
+
   const dispatch = useDispatch();
   const [img, setImg] = useState(null);
   const [formdata, setFormData] = useState(null);

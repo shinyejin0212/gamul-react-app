@@ -6,9 +6,18 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
+import axios from "../../api/axios";
+
 function CheckModal({ setModalOpen }) {
+  const [isChecked, setIsChecked] = useState([]);
+  const [isSelected, setIsSelected] = useState("");
+  const currentMarket = useSelector((state) => state.selectMarketReducer[0]);
+  const token = useSelector((state) => state.authToken);
+  console.log(token);
+  console.log("currentMarket", currentMarket);
+
   const getResults = useSelector((state) => state.getDetectionResultsReducer);
-  console.log("checkmodal getResults", getResults);
+
   // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
     setModalOpen(false);
@@ -37,21 +46,33 @@ function CheckModal({ setModalOpen }) {
       // document.removeEventListener('touchstart', handler); // 모바일 대응
     };
   });
-
-  const sendResults = () => {};
-
-  const [isChecked, setIsChecked] = useState([]);
-  const [isSelected, setIsSelected] = useState("");
-  const currentMarket = useSelector((state) => state.selectMarketReducer);
-  console.log("currentMarket", currentMarket);
-
   const onChangeCheck = (e, id, name, type) => {
     if (e.currentTarget.checked) {
       setIsChecked([name]);
+      setIsSelected(name);
     } else {
       setIsChecked([]);
+      setIsSelected(null);
     }
   };
+
+  const sendResults = async () => {
+    await axios
+      .get("/product", {
+        params: { market: currentMarket, product: isSelected },
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((res) => {
+        console.log("response", res.data.data.priceHistories);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>

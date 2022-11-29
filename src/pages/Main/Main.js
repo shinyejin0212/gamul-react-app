@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Title } from "../../styles/styles";
 import BottomSheet from "../../components/Address/BottomSheet";
 
@@ -28,9 +29,11 @@ function Main() {
   const position = selectedMarket[0] ? selectedMarket[0] : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [flag, setflag] = useState(true);
 
   const token = useSelector((state) => state.authToken);
+  console.log(token);
 
   const toggleDrawer = (newOpen) => () => {
     setflag(false);
@@ -119,9 +122,9 @@ function Main() {
             textDecoration: "underline",
           }}
           disabled={disabled}
-          onClick={() =>
-            (window.location.href = "/object_detection")
-          } /* 수정필요 */
+          onClick={() => {
+            navigate("/object_detection");
+          }} /* 수정필요 */
         >
           <div>
             {selectedMarket ? (
@@ -157,9 +160,7 @@ function Main() {
             textDecoration: "underline",
           }}
           disabled={disabled}
-          onClick={() =>
-            fetchNearMarkets()((window.location.href = "/near_market_list"))
-          }
+          onClick={() => fetchNearMarkets()(navigate("/near_market_list"))}
         >
           <div>
             {selectedMarket ? (
