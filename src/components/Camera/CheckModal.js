@@ -1,14 +1,14 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./CheckModal.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
-function CheckModal({ setModalOpen, id, title, content, writer }) {
-  const getResult = useSelector((state) => state.getDetectionResultsReducer);
-
+function CheckModal({ setModalOpen }) {
+  const getResults = useSelector((state) => state.getDetectionResultsReducer);
+  console.log("checkmodal getResults", getResults);
   // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
     setModalOpen(false);
@@ -39,6 +39,16 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
   });
 
   const sendResults = () => {};
+
+  const [isChecked, setIsChecked] = useState([]);
+
+  const onChangeCheck = (e, id, name, type) => {
+    if (e.currentTarget.checked) {
+      setIsChecked([name]);
+    } else {
+      setIsChecked([]);
+    }
+  };
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>
@@ -46,12 +56,31 @@ function CheckModal({ setModalOpen, id, title, content, writer }) {
 
         <p className={styles.modal__title}>확인하기</p>
         <div className={styles.modal__orange_wrap}>
-          <div className={styles.modal__items}>
-            {/* {getResult.name} : {getResult.confidence} */}
-          </div>
-          <div className={styles.modal__items}>이름 : 퍼센트</div>
+          {getResults &&
+            getResults.map((results) =>
+              results.map((result) => (
+                // console.log("checkmodal map함수", result.id)
 
-          <div className={styles.modal__items}>이름 : 퍼센트</div>
+                <li className={styles.modal__items}>
+                  <input
+                    type="checkbox"
+                    id={result.name}
+                    checked={isChecked.includes(result.name) || false}
+                    onChange={(e) => onChangeCheck(e, result.id, result.name)}
+                  />
+                  {console.log("checkmodal map함수", result.name)}
+                  {result.name} : {result.confidence}%
+                </li>
+              ))
+            )}
+          {/* 여기서부터  */}
+          <input
+            type="checkbox"
+            id={"사과"}
+            checked={isChecked.includes("사과") || false}
+            onChange={(e) => onChangeCheck(e, 0, "사과")}
+          />
+          사과: 100%
         </div>
         <div className={styles.modal__verification}>
           정말 인식을 완료하시겠습니까?
