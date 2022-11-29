@@ -23,6 +23,7 @@ function WebCam() {
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc);
+    setFormData(convertBase64IntoFile(img, "object.jpeg"));
   }, [webcamRef]);
 
   const getWebcam = () => {
@@ -62,7 +63,7 @@ function WebCam() {
   //파일 base64 형식에서 File 형식으로 디코딩 변환
   const convertBase64IntoFile = (image, fileName) => {
     const mimeType = image?.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0]; // image/jpeg
-    const realData = image.split(",")[1]; // 이 경우에선 /9j/4AAQSkZJRgABAQAAAQABAAD...
+    const realData = image?.split(",")[1]; // 이 경우에선 /9j/4AAQSkZJRgABAQAAAQABAAD...
 
     const blob = b64toBlob(realData, mimeType);
     const raw = new File([blob], fileName, { type: mimeType });
@@ -77,8 +78,6 @@ function WebCam() {
   };
 
   const sendImage = async () => {
-    setFormData(convertBase64IntoFile(img, "object.jpeg"));
-
     console.log(formdata);
     showModal();
 
@@ -86,13 +85,14 @@ function WebCam() {
 
     await axios
       .post(
-        `/product`, //주소 바꿔야할 듯
+        "/product", //주소 바꿔야할 듯
         {
           data: formdata,
         },
         {
           headers: {
             "Content-Type": "multipart/form-data",
+
             // Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
           },
         }
