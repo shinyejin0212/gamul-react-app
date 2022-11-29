@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./CheckModal.module.css";
 import { useSelector } from "react-redux";
 
@@ -39,6 +39,16 @@ function CheckModal({ setModalOpen }) {
   });
 
   const sendResults = () => {};
+
+  const [isChecked, setIsChecked] = useState([]);
+
+  const onChangeCheck = (e, id, name, type) => {
+    if (e.currentTarget.checked) {
+      setIsChecked([name]);
+    } else {
+      setIsChecked([]);
+    }
+  };
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>
@@ -50,12 +60,27 @@ function CheckModal({ setModalOpen }) {
             getResults.map((results) =>
               results.map((result) => (
                 // console.log("checkmodal map함수", result.id)
-                <div className={styles.modal__items}>
+
+                <li className={styles.modal__items}>
+                  <input
+                    type="checkbox"
+                    id={result.name}
+                    checked={isChecked.includes(result.name) || false}
+                    onChange={(e) => onChangeCheck(e, result.id, result.name)}
+                  />
                   {console.log("checkmodal map함수", result.name)}
                   {result.name} : {result.confidence}%
-                </div>
+                </li>
               ))
             )}
+          {/* 여기서부터  */}
+          <input
+            type="checkbox"
+            id={"사과"}
+            checked={isChecked.includes("사과") || false}
+            onChange={(e) => onChangeCheck(e, 0, "사과")}
+          />
+          사과: 100%
         </div>
         <div className={styles.modal__verification}>
           정말 인식을 완료하시겠습니까?
