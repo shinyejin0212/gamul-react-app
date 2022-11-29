@@ -41,6 +41,9 @@ function CheckModal({ setModalOpen }) {
   const sendResults = () => {};
 
   const [isChecked, setIsChecked] = useState([]);
+  const [isSelected, setIsSelected] = useState("");
+  const currentMarket = useSelector((state) => state.selectMarketReducer);
+  console.log("currentMarket", currentMarket);
 
   const onChangeCheck = (e, id, name, type) => {
     if (e.currentTarget.checked) {
@@ -56,7 +59,7 @@ function CheckModal({ setModalOpen }) {
 
         <p className={styles.modal__title}>확인하기</p>
         <div className={styles.modal__orange_wrap}>
-          {getResults &&
+          {/* {getResults &&
             getResults.map((results) =>
               results.map((result) => (
                 // console.log("checkmodal map함수", result.id)
@@ -72,7 +75,7 @@ function CheckModal({ setModalOpen }) {
                   {result.name} : {result.confidence}%
                 </li>
               ))
-            )}
+            )} */}
           {/* 여기서부터  */}
           <input
             type="checkbox"

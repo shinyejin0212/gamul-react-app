@@ -84,3 +84,10 @@ export const getDetectionResults = (results) => {
     results,
   };
 };
+
+export const setOpen = (newopen) => {
+  return {
+    type: "drawer열고닫기",
+    newopen,
+  };
+};

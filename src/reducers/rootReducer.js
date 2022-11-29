@@ -6,6 +6,7 @@ import BookMarkOrMapReducer from "./BookMarkOrMapReducer";
 import ImageReducer from "./ImageReducer";
 import getBookMarkReducer from "./getBookMarkReducer";
 import getDetectionResultsReducer from "./getDetectionResultsReducer";
+import drawerOpenReducer from "./drawerOpenReducer";
 import tokenReducer from "../storage/Auth";
 
 const rootReducer = combineReducers({
@@ -17,5 +18,6 @@ const rootReducer = combineReducers({
   authToken: tokenReducer,
   getBookMarkReducer,
   getDetectionResultsReducer,
+  drawerOpenReducer,
 });
 export default rootReducer;
