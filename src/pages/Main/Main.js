@@ -42,11 +42,11 @@ function Main() {
   };
 
   const fetchNearMarkets = async () => {
-    console.log(selectedMarket);
+    console.log(position);
     await axios
       .get(`/market`, {
         params: {
-          market: selectedMarket,
+          market: position,
         },
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +160,10 @@ function Main() {
             textDecoration: "underline",
           }}
           disabled={disabled}
-          onClick={() => fetchNearMarkets()(navigate("/near_market_list"))}
+          onClick={() => {
+            fetchNearMarkets();
+            navigate("/near_market_list");
+          }}
         >
           <div>
             {selectedMarket ? (
