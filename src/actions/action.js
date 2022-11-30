@@ -93,3 +93,10 @@ export const setOpen = (newopen) => {
     newopen,
   };
 };
+
+export const setGraph = (priceHistories) => {
+  return {
+    type: "그래프 Value 가져오기",
+    priceHistories,
+  };
+};

@@ -8,6 +8,7 @@ import getBookMarkReducer from "./getBookMarkReducer";
 import getDetectionResultsReducer from "./getDetectionResultsReducer";
 import drawerOpenReducer from "./drawerOpenReducer";
 import getNearMarkets from "./getNearMarkets";
+import setGraphReducer from "./setGraphReducer";
 import tokenReducer from "../storage/Auth";
 
 const rootReducer = combineReducers({
@@ -21,5 +22,6 @@ const rootReducer = combineReducers({
   getNearMarkets,
   getDetectionResultsReducer,
   drawerOpenReducer,
+  setGraphReducer,
 });
 export default rootReducer;
