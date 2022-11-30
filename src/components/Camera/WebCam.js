@@ -2,14 +2,17 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
-import axios from "../../api/axios";
-import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { getDetectionResults } from "../../actions/action";
 import { BsArrowCounterclockwise } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import { pointColor } from "../../styles/GlobalStyles";
 
 function WebCam() {
+  const token = useSelector((state) => state.authToken);
+  console.log(token);
+
   const dispatch = useDispatch();
   const [img, setImg] = useState(null);
   const [formdata, setFormData] = useState(null);
@@ -88,7 +91,7 @@ function WebCam() {
 
     await axios
       .post(
-        "/product", //주소 바꿔야할 듯
+        "http://192.168.219.105:8000/api/product", //주소 바꿔야할 듯
         {
           data: convertBase64IntoFile(img, "object.jpeg"),
         },
@@ -148,7 +151,7 @@ function WebCam() {
               <FiSend />
             </Button>
             {modalOpen && (
-              <CheckModal setModalOpen={setModalOpen} />
+              <CheckModal setModalOpen={setModalOpen} setImg={setImg} />
               // clickRef={clickRef}
             )}
           </div>

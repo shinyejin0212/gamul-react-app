@@ -71,10 +71,12 @@ export const getBookmarks = (bookmarks) => {
 //   };
 // };
 
-export const getNearMarkets = (nearMarkets) => {
+export const getNearMarkets = (results) => {
+  console.log("getNearMarkets", results);
+
   return {
     type: "가까운마트가격가져오기",
-    nearMarkets,
+    results,
   };
 };
 
@@ -82,5 +84,19 @@ export const getDetectionResults = (results) => {
   return {
     type: "인식결과가져오기",
     results,
+  };
+};
+
+export const setOpen = (newopen) => {
+  return {
+    type: "drawer열고닫기",
+    newopen,
+  };
+};
+
+export const setGraph = (priceHistories) => {
+  return {
+    type: "그래프 Value 가져오기",
+    priceHistories,
   };
 };

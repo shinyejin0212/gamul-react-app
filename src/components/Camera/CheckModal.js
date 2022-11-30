@@ -1,14 +1,25 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./CheckModal.module.css";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
-function CheckModal({ setModalOpen }) {
+import axios from "../../api/axios";
+import { setGraph } from "../../actions/action";
+
+function CheckModal({ setModalOpen, setImg }) {
+  const [isChecked, setIsChecked] = useState([]);
+  const [isSelected, setIsSelected] = useState("");
+  const currentMarket = useSelector((state) => state.selectMarketReducer[0]);
+  const token = useSelector((state) => state.authToken);
+  console.log(token);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log("currentMarket", currentMarket);
+
   const getResults = useSelector((state) => state.getDetectionResultsReducer);
-  console.log("checkmodal getResults", getResults);
+
   // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
     setModalOpen(false);
@@ -37,18 +48,38 @@ function CheckModal({ setModalOpen }) {
       // document.removeEventListener('touchstart', handler); // 모바일 대응
     };
   });
-
-  const sendResults = () => {};
-
-  const [isChecked, setIsChecked] = useState([]);
-
   const onChangeCheck = (e, id, name, type) => {
     if (e.currentTarget.checked) {
       setIsChecked([name]);
+      setIsSelected(name);
     } else {
       setIsChecked([]);
+      setIsSelected(null);
     }
   };
+
+  const sendResults = async () => {
+    await axios
+      .get("/product", {
+        params: { market: currentMarket, product: isSelected },
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
+        },
+      })
+      .then((res) => {
+        console.log("response", res.data.data);
+        navigate("/price_history_graph");
+        dispatch(setGraph(res.data.data.priceHistories));
+      })
+      .catch((e) => {
+        console.log(e.message);
+        alert("객체 인식에 실패하였습니다. 다시 시도해주세요.");
+        closeModal();
+        setImg(null);
+      });
+  };
+
   return (
     <div className={styles.modal__background}>
       <div ref={modalRef} className={styles.container}>
@@ -62,7 +93,7 @@ function CheckModal({ setModalOpen }) {
                 // console.log("checkmodal map함수", result.id)
 
                 <li className={styles.modal__items}>
-                  <input
+                  <StyledInput
                     type="checkbox"
                     id={result.name}
                     checked={isChecked.includes(result.name) || false}
@@ -73,14 +104,6 @@ function CheckModal({ setModalOpen }) {
                 </li>
               ))
             )}
-          {/* 여기서부터  */}
-          <input
-            type="checkbox"
-            id={"사과"}
-            checked={isChecked.includes("사과") || false}
-            onChange={(e) => onChangeCheck(e, 0, "사과")}
-          />
-          사과: 100%
         </div>
         <div className={styles.modal__verification}>
           정말 인식을 완료하시겠습니까?
@@ -109,4 +132,23 @@ const Button = styled.button`
   max-width: 232px;
   height: 4rem;
   border-radius: 12px;
+`;
+
+const StyledInput = styled.input`
+  appearance: none;
+  border: 1.5px solid gainsboro;
+  border-radius: 0.35rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 10px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: limegreen;
+    margin-right: 10px;
+  }
 `;

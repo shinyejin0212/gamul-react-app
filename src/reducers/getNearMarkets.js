@@ -1,12 +1,12 @@
-const initialState = [];
+const initialState = "-";
 
-const getBookMarkReducer = (state = initialState, action) => {
+const getNearMarkets = (state = initialState, action) => {
   switch (action.type) {
     case "가까운마트가격가져오기":
-      state = action.bookmarks;
-      return [...state];
+      state = action.results;
+      return state;
     default:
       return state;
   }
 };
-export default getBookMarkReducer;
+export default getNearMarkets;

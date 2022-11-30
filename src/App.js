@@ -11,8 +11,8 @@ import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
 import ObjectDetection from "./pages/Camera/ObjectDetection";
-import NearMarketList from "./pages/NearMarket/nearMartList";
-import PriceHistoryGraph from "./pages/Camera/priceHistoryGraph";
+import NearMarketList from "./pages/NearMarket/NearMartList";
+import PriceHistoryGraph from "./pages/Camera/PriceHistoryGraph";
 const Layout = () => {
   return (
     <>
