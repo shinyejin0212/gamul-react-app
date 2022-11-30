@@ -9,10 +9,15 @@ import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 
-function nearMartList() {
+function NearMartList() {
   const id = 1; //수정하기
   const token = useSelector((state) => state.authToken);
-  console.log(token);
+  const first = useSelector((state) => state.getNearMarkets.first);
+  const second = useSelector((state) => state.getNearMarkets.second);
+  const third = useSelector((state) => state.getNearMarkets.third);
+  const tables = useSelector((state) => state.getNearMarkets.table);
+  const markets = [first, second, third];
+  console.log("tables", tables);
 
   return (
     <div
@@ -32,9 +37,10 @@ function nearMartList() {
             position: "fixed",
           }}
         >
-          <MartCategory key={id} props="롯데백화점 명동본점" />
-          <MartCategory key="2" props="롯데백화점마켓2" />
-          <MartCategory key="3" props="마켓3" />
+          {markets &&
+            markets.map((market) => (
+              <MartCategory key={market} props={market} />
+            ))}
         </div>
       </div>
 
@@ -54,13 +60,16 @@ function nearMartList() {
           loopFillGroupWithBlank={true}
           height="360"
         >
-          <SwiperSlide>
-            <FoodCategory key="1" props="고등어" />
-          </SwiperSlide>
+          {tables &&
+            tables.map((table, idx) => (
+              <SwiperSlide>
+                <FoodCategory key={idx} title={table.name} prices={table.row} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>
   );
 }
 
-export default nearMartList;
+export default NearMartList;

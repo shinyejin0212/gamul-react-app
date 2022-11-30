@@ -20,7 +20,12 @@ import Button from "@mui/material/Button";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { MoveBookMark, MoveMap, setOpen } from "../../actions/action";
+import {
+  MoveBookMark,
+  MoveMap,
+  setOpen,
+  getNearMarkets,
+} from "../../actions/action";
 import axios from "../../api/axios";
 
 function Main() {
@@ -54,7 +59,8 @@ function Main() {
         },
       })
       .then((response) => {
-        console.log("fetchNearMarkets", response.data);
+        console.log("fetchNearMarkets", response.data.data);
+        dispatch(getNearMarkets(response.data.data));
       })
       .catch((e) => console.log(e));
   };

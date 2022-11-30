@@ -45,7 +45,7 @@ const BOxStyle = {
 
 const MoneyStyle = {
   fontSize: "16px",
-  backgroundColor: "red",
+  backgroundColor: "white",
   height: "45px",
   lineHeight: "49px",
   fontWeight: "900",
@@ -58,7 +58,7 @@ const MoneyStyle = {
   marginLeft: "10px",
 };
 
-function FoodCategory({ props }) {
+function FoodCategory({ title, prices }) {
   return (
     <div
       style={{
@@ -68,11 +68,15 @@ function FoodCategory({ props }) {
         maxWidth: "335px",
       }}
     >
-      <div style={FoodStyle}>{props}</div>
+      <div style={FoodStyle}>{title}</div>
       <div style={BOxStyle}>
-        <div style={MoneyStyle}>50,000원</div>{" "}
-        <div style={MoneyStyle}>50,000원</div>{" "}
-        <div style={MoneyStyle}>50,000원</div>
+        {/* {prices.forEach((item) => {
+          item ? (
+            <div style={MoneyStyle}>{item.price}원</div>
+          ) : (
+            <div style={MoneyStyle}>-원</div>
+          );
+        })} */}
       </div>
     </div>
   );

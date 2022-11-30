@@ -7,6 +7,7 @@ import ImageReducer from "./ImageReducer";
 import getBookMarkReducer from "./getBookMarkReducer";
 import getDetectionResultsReducer from "./getDetectionResultsReducer";
 import drawerOpenReducer from "./drawerOpenReducer";
+import getNearMarkets from "./getNearMarkets";
 import tokenReducer from "../storage/Auth";
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   ImageReducer,
   authToken: tokenReducer,
   getBookMarkReducer,
+  getNearMarkets,
   getDetectionResultsReducer,
   drawerOpenReducer,
 });
