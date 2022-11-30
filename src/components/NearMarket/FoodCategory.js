@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { pointColor } from "../../styles/GlobalStyles";
 
 const FoodStyle = {
@@ -44,21 +44,34 @@ const BOxStyle = {
 };
 
 const MoneyStyle = {
-  fontSize: "16px",
+  fontSize: "15px",
   backgroundColor: "white",
   height: "45px",
-  lineHeight: "49px",
-  fontWeight: "900",
+  fontWeight: "600",
   fontSize: "14px",
-  fontStyle: "italic",
   width: "85px",
-  textAlign: "center",
-  margin: "2px",
+  marginTop: "2px",
   marginRight: "10px",
   marginLeft: "10px",
 };
 
+const UnitStyle = {
+  fontSize: "12px",
+  fontWeight: "500",
+  fontSize: "12px",
+};
 function FoodCategory({ title, prices }) {
+  // const savePrices = () => {
+  //   let prices_arr = [];
+  //   let unit = null;
+  //   prices.map((items, idx) => {
+  //     prices_arr.push(items.price);
+  //     unit = items.unit;
+  //   });
+  //   let minValue = prices_arr.reduce((max, curr) => (max > curr ? curr : max));
+  //   console.log("minValue", minValue);
+  // };
+
   return (
     <div
       style={{
@@ -70,13 +83,12 @@ function FoodCategory({ title, prices }) {
     >
       <div style={FoodStyle}>{title}</div>
       <div style={BOxStyle}>
-        {/* {prices.forEach((item) => {
-          item ? (
-            <div style={MoneyStyle}>{item.price}원</div>
-          ) : (
-            <div style={MoneyStyle}>-원</div>
-          );
-        })} */}
+        {prices.map((items) => (
+          <li style={MoneyStyle}>
+            {items.price}원<br></br>
+            <a style={UnitStyle}>({items.unit})</a>
+          </li>
+        ))}
       </div>
     </div>
   );
