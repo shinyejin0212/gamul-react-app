@@ -144,9 +144,28 @@ function KakaoMap(position) {
         ref={mapContainer}
         style={{ width: "349px", height: "298px", borderRadius: "12px" }}
       ></div>
-      {clickMarker}
+      <div style={clickMarkerStyle}>
+        {" "}
+        <div style={marketTitleStyle}>{clickMarker[0]}</div>
+        <div style={marketAddressStyle}>{clickMarker[1]}</div>
+      </div>
     </>
   );
 }
 
 export default KakaoMap;
+
+const clickMarkerStyle = {
+  padding: "10px",
+  display: "flex",
+  flexDirection: "column",
+};
+
+const marketTitleStyle = {
+  fontWeight: "900",
+  fontSize: "15px",
+};
+const marketAddressStyle = {
+  fontWeight: "500",
+  fontSize: "12px",
+};

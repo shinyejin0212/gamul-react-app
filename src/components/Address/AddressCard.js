@@ -56,6 +56,7 @@ function AddressCard({ title, address }) {
           fontSize: 16,
           padding: 5,
           height: "38px",
+          marginBottom: "50px",
         }}
       >
         <div

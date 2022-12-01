@@ -141,7 +141,6 @@ function BottomSheet({}) {
       >
         선택
       </Button>
-      {market}
     </>
   );
 }
