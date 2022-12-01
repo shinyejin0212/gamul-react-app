@@ -186,7 +186,7 @@ const captureButton = {
   outline: "0.3rem solid white",
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
   left: "40%",
   right: "40%",
 };
@@ -196,7 +196,8 @@ const retakeButton = {
   color: pointColor,
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
+
   left: "50%",
   transform: "translate(-200%)",
 
@@ -207,7 +208,8 @@ const transmitButton = {
   color: pointColor,
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
+
   right: "50%",
   transform: "translate(200%)",
 
