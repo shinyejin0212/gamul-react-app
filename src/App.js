@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar/Navbar";
 
 // pages
 import Home from "./pages/Home/Home";
-import LogIn from "./pages/Sign/LogIn";
 import SignUp from "./pages/Sign/SignUp";
 import Main from "./pages/Main/Main";
 import ObjectDetection from "./pages/Camera/ObjectDetection";
@@ -32,7 +31,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path="login" element={<LogIn />} />
               <Route path="main" element={<Main />} />
               <Route path="near_market_list" element={<NearMarketList />} />
               <Route
