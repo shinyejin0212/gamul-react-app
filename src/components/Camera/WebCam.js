@@ -91,7 +91,7 @@ function WebCam() {
 
     await axios
       .post(
-        "http://192.168.219.105:8000/api/product", //주소 바꿔야할 듯
+        "http://192.168.98.100:8000/api/product", //주소 바꿔야할 듯
         {
           data: convertBase64IntoFile(img, "object.jpeg"),
         },

@@ -89,6 +89,7 @@ export default function Home() {
           </div>
           <div>
             <InputBlank
+              type="password"
               placeholder="비밀번호를 입력해주세요"
               {...register("password", { required: true })}
             />

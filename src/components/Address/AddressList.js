@@ -12,6 +12,7 @@ export default function AddressList() {
       {bookmarks &&
         bookmarks.map((bookmark, idx) => (
           <AddressCard
+            style={addressCardStyle}
             // onClick={(e) => {
             //   console.log("좀");
             //   clickBookmark(bookmark);
@@ -19,13 +20,14 @@ export default function AddressList() {
             key={idx}
             title={bookmark.name}
             address={bookmark.region}
-
-            //   title={LikeAddress.title}
-            //   address={LikeAddress.address}
-            //   latitude={LikeAddress.latitude}
-            //   lontitude={LikeAddress.lontitude}
           />
         ))}
     </div>
   );
 }
+
+const addressCardStyle = {
+  padding: "10px",
+  marginTop: "10px",
+  display: "flex",
+};
