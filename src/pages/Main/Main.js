@@ -51,7 +51,7 @@ function Main() {
   const fetchNearMarkets = async () => {
     console.log(position);
     await axios
-      .get(`/market`, {
+      .get(`/api/market`, {
         params: {
           market: position,
         },

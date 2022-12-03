@@ -62,7 +62,7 @@ function CheckModal({ setModalOpen, setImg }) {
   const sendResults = async () => {
     setLoading(true);
     await axios
-      .get("/product", {
+      .get("/api/product", {
         params: { market: currentMarket, product: isSelected },
         headers: {
           // "Content-Type": "application/json",

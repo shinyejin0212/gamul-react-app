@@ -37,7 +37,7 @@ function BottomSheet({}) {
     setLoading(true);
 
     await axios
-      .get(`/bookmark`, {
+      .get(`/api/bookmark`, {
         headers: {
           // "Content-Type": "application/json",
           Authorization: `Bearer ${token.accessToken}`, //Bearer 꼭 붙여줘야함
@@ -64,7 +64,7 @@ function BottomSheet({}) {
 
     try {
       await axios.post(
-        `/bookmark`,
+        `/api/bookmark`,
         {
           market: selected_market,
         },
