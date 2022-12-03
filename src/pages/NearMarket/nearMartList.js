@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MartCategory from "../../components/NearMarket/MartCategory";
 import FoodCategory from "../../components/NearMarket/FoodCategory";
+import Loading from "../../components/Loading";
 
 // import required modules
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,6 +18,15 @@ function NearMartList() {
   const third = useSelector((state) => state.getNearMarkets.third);
   const tables = useSelector((state) => state.getNearMarkets.table);
   const markets = [first, second, third];
+
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   if (markets) {
+  //     setLoading(false);
+  //   }
+  // }, [markets]);
+
   console.log("tables", tables);
 
   return (
@@ -26,6 +36,8 @@ function NearMartList() {
         marginTop: "113px",
       }}
     >
+      {loading ? <Loading /> : null}
+
       <div style={{ backgroundColor: "black" }}>
         <div
           style={{
@@ -39,7 +51,11 @@ function NearMartList() {
         >
           {markets &&
             markets.map((market) => (
-              <MartCategory key={market} props={market} />
+              <MartCategory
+                key={market}
+                props={market}
+                setLoading={setLoading}
+              />
             ))}
         </div>
       </div>
