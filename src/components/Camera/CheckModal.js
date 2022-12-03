@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
 
 import axios from "../../api/axios";
-import { setGraph } from "../../actions/action";
+import { setGraph, getDetectionResults } from "../../actions/action";
 
 function CheckModal({ setModalOpen, setImg }) {
   const [isChecked, setIsChecked] = useState([]);
@@ -69,8 +69,12 @@ function CheckModal({ setModalOpen, setImg }) {
       })
       .then((res) => {
         console.log("response", res.data.data);
+        // if (res.data.data.length > 0) {
         navigate("/price_history_graph");
         dispatch(setGraph(res.data.data.priceHistories));
+        // } else {
+        //   navigate("/price_history_graph");
+        // }
       })
       .catch((e) => {
         console.log(e.message);
