@@ -1,5 +1,6 @@
 import React from "react";
 import WebCam from "../../components/Camera/WebCam";
+import Loading from "../../components/Loading.js";
 
 function ObjectDetection() {
   return (

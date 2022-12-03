@@ -12,8 +12,10 @@ import {
   MoveMap,
   getBookmarks,
 } from "../../actions/action";
+import Loading from "../Loading.js";
 
 function BottomSheet({}) {
+  const [loading, setLoading] = useState(false);
   const currentLocation = useGeoLocation();
   const [market, setMarket] = useState("");
   const [error, setError] = useState(null);
@@ -32,6 +34,8 @@ function BottomSheet({}) {
 
   const [bookmarks, setBookmarks] = useState([]);
   const fetchBookmarks = async () => {
+    setLoading(true);
+
     await axios
       .get(`/bookmark`, {
         headers: {
@@ -40,6 +44,8 @@ function BottomSheet({}) {
         },
       })
       .then((response) => {
+        setLoading(false);
+
         setBookmarks(response.data.data.marekt);
         dispatch(getBookmarks(response.data.data.market));
       })
@@ -54,6 +60,8 @@ function BottomSheet({}) {
   }, [move]);
 
   const setBookmark = async (selected_market) => {
+    setLoading(true);
+
     try {
       await axios.post(
         `/bookmark`,
@@ -67,6 +75,7 @@ function BottomSheet({}) {
           },
         }
       );
+      setLoading(false);
       dispatch(MoveBookMark());
     } catch (error) {
       setError(error);
@@ -84,6 +93,7 @@ function BottomSheet({}) {
 
   return move === false ? (
     <>
+      {loading ? <Loading /> : null}
       <div
         style={{
           fontWeight: "900",
@@ -124,6 +134,7 @@ function BottomSheet({}) {
     </>
   ) : (
     <>
+      {loading ? <Loading /> : null}
       <KakaoMap location={currentLocation} />
       <br></br>
       <Button

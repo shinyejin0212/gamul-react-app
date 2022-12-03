@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { pointColor } from "../../styles/GlobalStyles";
+import Loading from "../Loading";
 
 import axios from "../../api/axios";
 import { setGraph, getDetectionResults } from "../../actions/action";
@@ -12,13 +13,13 @@ function CheckModal({ setModalOpen, setImg }) {
   const [isChecked, setIsChecked] = useState([]);
   const [isSelected, setIsSelected] = useState("");
   const currentMarket = useSelector((state) => state.selectMarketReducer[0]);
+  const getResults = useSelector((state) => state.getDetectionResultsReducer);
+
   const token = useSelector((state) => state.authToken);
-  console.log(token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log("currentMarket", currentMarket);
-
-  const getResults = useSelector((state) => state.getDetectionResultsReducer);
+  const [loading, setLoading] = useState(false);
 
   // 모달 끄기 (X버튼 onClick 이벤트 핸들러)
   const closeModal = () => {
@@ -59,6 +60,7 @@ function CheckModal({ setModalOpen, setImg }) {
   };
 
   const sendResults = async () => {
+    setLoading(true);
     await axios
       .get("/product", {
         params: { market: currentMarket, product: isSelected },
@@ -69,6 +71,8 @@ function CheckModal({ setModalOpen, setImg }) {
       })
       .then((res) => {
         console.log("response", res.data.data);
+        setLoading(false);
+
         // if (res.data.data.length > 0) {
         navigate("/price_history_graph");
         dispatch(setGraph(res.data.data.priceHistories));
@@ -81,17 +85,20 @@ function CheckModal({ setModalOpen, setImg }) {
         alert("객체 인식에 실패하였습니다. 다시 시도해주세요.");
         closeModal();
         setImg(null);
+        dispatch(getDetectionResults([]));
       });
   };
 
   return (
     <div className={styles.modal__background}>
+      {loading ? <Loading /> : null}
+
       <div ref={modalRef} className={styles.container}>
         <button className={styles.close} onClick={closeModal}></button>
 
         <p className={styles.modal__title}>확인하기</p>
         <div className={styles.modal__orange_wrap}>
-          {getResults &&
+          {getResults[0] &&
             getResults.map((results) =>
               results.map((result) => (
                 // console.log("checkmodal map함수", result.id)
