@@ -8,8 +8,10 @@ import { getDetectionResults } from "../../actions/action";
 import { BsArrowCounterclockwise } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import { pointColor } from "../../styles/GlobalStyles";
+import Loading from "../Loading.js";
 
 function WebCam() {
+  const [loading, setLoading] = useState(false);
   const token = useSelector((state) => state.authToken);
   console.log(token);
 
@@ -33,11 +35,14 @@ function WebCam() {
   }, [webcamRef]);
 
   const getWebcam = () => {
+    setLoading(true);
+
     try {
       const constraints = {
         video: true,
         audio: false,
       };
+      setLoading(false);
       navigator.mediaDevices.getUserMedia(constraints);
     } catch (err) {
       console.log(err);
@@ -88,10 +93,10 @@ function WebCam() {
     showModal();
 
     // axios 요청 보내기
-
+    setLoading(true);
     await axios
       .post(
-        "http://192.168.98.100:8000/api/product", //주소 바꿔야할 듯
+        process.env.REACT_APP_DJANGO_SERVER_PORT + "/objectdetection", //주소 바꿔야할 듯
         {
           data: convertBase64IntoFile(img, "object.jpeg"),
         },
@@ -103,10 +108,17 @@ function WebCam() {
         }
       )
       .then((response) => {
+        setLoading(false);
         console.log("webCam107", response.data);
-        dispatch(getDetectionResults(response.data.data)); //여기 데이터 형식 확인 후 수정해야함
-
-        showModal();
+        if (response.data.success == "false") {
+          setImg(null);
+          alert("객체인식에 실패하였습니다. 다시 시도해주세요!");
+          setModalOpen(false);
+          dispatch(getDetectionResults([]));
+        } else {
+          dispatch(getDetectionResults(response.data.data)); //여기 데이터 형식 확인 후 수정해야함
+          showModal();
+        }
       })
       .catch((e) => console.log(e));
   };
@@ -117,6 +129,8 @@ function WebCam() {
 
   return (
     <div className="Container">
+      {loading ? <Loading /> : null}
+
       {img === null ? (
         <>
           {/* <TestOverlay /> */}
@@ -186,7 +200,7 @@ const captureButton = {
   outline: "0.3rem solid white",
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
   left: "40%",
   right: "40%",
 };
@@ -196,7 +210,8 @@ const retakeButton = {
   color: pointColor,
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
+
   left: "50%",
   transform: "translate(-200%)",
 
@@ -207,7 +222,8 @@ const transmitButton = {
   color: pointColor,
 
   position: "absolute",
-  bottom: "24%",
+  bottom: "15%",
+
   right: "50%",
   transform: "translate(200%)",
 

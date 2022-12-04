@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Title } from "../../styles/styles";
 import SubmitButton from "../../components/Button/SubmitButton.js";
@@ -8,8 +8,11 @@ import axios from "../../api/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styled from "styled-components";
+import Loading from "../../components/Loading";
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
+
   const PasswordPattern =
     /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,}$/;
   const schema = yup
@@ -53,16 +56,19 @@ export default function SignUp() {
   const onValid = async (data) => {
     // alert(JSON.stringify(data));/
     console.log(data, "onvalid");
-
+    setLoading(true);
     try {
-      await axios.post(`/auth/signup`, {
+      await axios.post(`/api/auth/signup`, {
         name: data.nickname,
         email: data.email,
         password: data.password,
       });
+      setLoading(false);
       window.location.href = "/";
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data.message);
+      setLoading(false);
+      alert(e.response.data.message);
     }
   };
   const onInvalid = (data) => console.log(data, "onInvalid");
@@ -77,6 +83,8 @@ export default function SignUp() {
         // minHeight: "100vh",
       }}
     >
+      {loading ? <Loading /> : null}
+
       <div>
         <Title>회원가입</Title>
         <div style={explain}>간단한 회원가입을 통해 GAMUL을 이용해보세요.</div>

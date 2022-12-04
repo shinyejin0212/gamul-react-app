@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 const Marketstyle = {
   fontSize: "16px",
@@ -29,7 +28,10 @@ const Marketstyle = {
   margin: "5px",
 };
 
-function MartCategory({ props }) {
+function MartCategory({ props, setLoading }) {
+  if (props) {
+    setLoading(false);
+  }
   return (
     <div>
       <button style={Marketstyle}>{props}</button>

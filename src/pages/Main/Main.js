@@ -33,7 +33,9 @@ function Main() {
   const selectedMarket = useSelector((state) => state.selectMarketReducer);
   const position = selectedMarket[0] ? selectedMarket[0] : "마트 선택하기";
   const disabled = selectedMarket ? false : true;
+
   const dispatch = useDispatch();
+  dispatch(getNearMarkets("-"));
   const navigate = useNavigate();
   const [flag, setflag] = useState(true);
 
@@ -49,7 +51,7 @@ function Main() {
   const fetchNearMarkets = async () => {
     console.log(position);
     await axios
-      .get(`/market`, {
+      .get(`/api/market`, {
         params: {
           market: position,
         },

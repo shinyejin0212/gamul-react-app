@@ -24,6 +24,14 @@ const Layout = () => {
 };
 
 function App() {
+  // console.log(
+  //   "REACT_APP_SERVER_PORT/PORT = ",
+  //   process.env.REACT_APP_SERVER_PORT
+  // );
+  console.log(
+    "REACT_APP_DJANGO_SERVER_PORT/PORT = ",
+    process.env.REACT_APP_DJANGO_SERVER_PORT
+  );
   return (
     <>
       <GlobalStyle />

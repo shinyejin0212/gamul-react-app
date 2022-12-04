@@ -38,7 +38,8 @@ export const loginUser = async (credentials) => {
   const data = await getPromise(
     process.env.REACT_APP_SERVER_PORT + "/api/auth/login",
     option
-  ).catch(() => {
+  ).catch((e) => {
+    console.log(e);
     return statusError;
   });
 
