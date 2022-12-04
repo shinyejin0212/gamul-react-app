@@ -51,7 +51,7 @@ export default function Home() {
       setLoading(false);
       return navigate("/main");
     } else {
-      console.log(response.json);
+      console.log(response);
     }
   };
   const onInvalid = (data) => console.log(data, "onInvalid");

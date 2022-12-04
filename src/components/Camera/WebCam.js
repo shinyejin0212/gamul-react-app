@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@mui/material";
 import CheckModal from "../Camera/CheckModal";
-import axios from "../../api/axios";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetectionResults } from "../../actions/action";
 import { BsArrowCounterclockwise } from "react-icons/bs";
@@ -96,7 +96,7 @@ function WebCam() {
     setLoading(true);
     await axios
       .post(
-        "/objectdetection", //주소 바꿔야할 듯
+        process.env.REACT_APP_DJANGO_SERVER_PORT + "/objectdetection", //주소 바꿔야할 듯
         {
           data: convertBase64IntoFile(img, "object.jpeg"),
         },
