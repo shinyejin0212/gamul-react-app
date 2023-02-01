@@ -1,23 +1,18 @@
-<img src="https://user-images.githubusercontent.com/65756225/208087196-0b24f1b3-143a-4f6e-93c4-8feb1cff57df.png">
+<img src="https://user-images.githubusercontent.com/81355590/215992458-5b76bc1d-ed3e-4479-aa4c-d9b523b13023.png" width="200">
 
-# 📍 프로젝트 소개
-> **오프라인 장보기 도우미 서비스 "가물"**
-- 동국대학교 2022 캡스톤디자인2, 5팀 가물가물
-- 프로젝트기간 : 2022.09.15 ~ 2022.12.14 (3개월)
+# 📍 Project Description
 
-- 오프라인 농수산물 등의 신선식품의 물가에 어두운 사회초년생을 위한 물가 정보 제공
-  - 상품 사진을 찍으면 최근 물가 동향을 그래프로 제공!
-  - 마트를 선택하면 인근 마트와 함께 최신 가격 정보를 테이블로 제공!
+> **A mobile web service that provides community and festival information for the Dongguk University Fall Festival.**
 
-- [~~Demo link : https://gamul.shop~~](gamul.shop) (😢현재 배포 중단😢)
----
-# 📄 아키텍쳐 다이어그램
-<img src="https://user-images.githubusercontent.com/65756225/208094525-620749b4-add0-417a-97a5-363c91b0a619.jpg">
+- 2022, LikeLion, an IT Startup Club, Dongguk Univ.
+- JUN 2022 - SEP 2022
+- We have created a service so that students can enjoy the fall festival held after three years more fun and effectively. 
+- We formed a community by providing information on various booths and timetables, as well as booth guestbooks.
 
-- 사용한 Open API : [서울시 생필품 농수축산물 가격 정보](https://data.seoul.go.kr/dataList/OA-1170/S/1/datasetView.do)
+We developed the service in a RESTful way
 
 ---
-# 📚 개발 환경
+# 📚 Using Stack
 
 > ## React Stack <br>
 > ![img](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat-square)
@@ -27,44 +22,41 @@
 > <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
 > <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
 > <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
-> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=black"> 
 > <br>
 > <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
 > <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
-> <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
-> <img src="https://img.shields.io/badge/junit5-25A162?style=for-the-badge&logo=junit5&logoColor=white">
-> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
-> <img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white">
-> <br>
-> <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-> <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
-> <img src="https://img.shields.io/badge/yolo-00FFFF?style=for-the-badge&logo=yolo&logoColor=white">
 > <br>
 > <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
 > <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
 > <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 ---
-# 🔍 사용 방법
+# 🔍 How to use
 
-| 회원가입 | 로그인 | 북마크 기능| 상품 물가 조회| 마트 물가 조회 |
-|:---:|:---:|:---:|:---:|:---:|
-|<img src="https://user-images.githubusercontent.com/65756225/208087539-f3530b10-fe68-4b51-b20c-a818ae7f84e8.gif" width=200px>|<img src="https://user-images.githubusercontent.com/65756225/208087524-413588e1-68e7-4615-925a-cfb3dbdb8870.gif" width=200px>|<img src="https://user-images.githubusercontent.com/65756225/208087535-edca0d61-5d22-4a81-9ac3-14d719001ddd.gif" width=200px>|<img src="https://user-images.githubusercontent.com/65756225/208087537-3d93c0c0-9fd4-443a-bced-4cbd15e843a3.gif" width=200px>|<img src="https://user-images.githubusercontent.com/65756225/208087531-6e559c8e-ff99-4e70-b68e-186d6911c5f9.gif" width=200px>|
-|.|.|북마크에 마트를 추가한 뒤에 기준이 되는 시장 or 마트 설정해야 다른 기능 사용 가능!| 상품을 촬영한 뒤에 설정했던 시장 or 마트의 물가 동향을 그래프 제공!| 설정한 마트와 가까운 두 곳의 시장 or 마트의 최신 가격들을 테이블로 제공!|
+| Main | Time Table | Booth Map | Booth Detail |
+|:---:|:---:|:---:|:---:|
+|<img src="https://user-images.githubusercontent.com/81355590/216004095-38b2b11b-88ef-4067-b779-5b42456184c4.gif" width=200px>|<img src="https://user-images.githubusercontent.com/81355590/216000845-4ae68d90-feda-4fa0-a9f2-a14a79f2a8d3.gif" width=200px>|<img src="https://user-images.githubusercontent.com/81355590/216004144-1e8e469d-519e-4054-8223-a42d2db2e9bb.gif" width=200px>|<img src="https://user-images.githubusercontent.com/81355590/216004130-cbbaadea-feb9-4d07-b03f-ecc47ae8d41c.gif" width=200px>|
+| <li> Fireworks effect <br><li> Top5 Booth <br><li>Booth Search | <li>3-day performance time table | <li>Booth information by building | <li>Booth sales information <br><li> Guest Book |
+
+---
+# What we got from this project
+1. DUBS Interview <br>
+   - Regarding this service, I had an interview with Dongguk University DUBS.<br><br>
+      <img src="https://user-images.githubusercontent.com/81355590/216004960-62f95b57-8dd9-4c03-a2a5-4b3fba8e1a29.png" width=200px>
+    -  url : https://www.youtube.com/watch?v=ojV9ils_L2M&feature=youtu.be
+<br><br>
+ 2. Users <br>
+    -  By attracting about 10,000 users for 3 days, I developed insights to identify the features customers need<br>
+        <img src="https://user-images.githubusercontent.com/81355590/216005290-f4922e5e-39ba-4a62-9afd-87786cc01fc3.png" width=500px>
 
 ---
 # ⚙️ .env
 ```.env
-REACT_APP_SERVER_PORT = (백엔드 서버 url)
+REACT_APP_SERVER_PORT = (Back-end server url)
 
 ```
 ---
-# 🛠️ API specification
-[API specification](https://shynnn.notion.site/a12ae0a2071241e0a1a606b32ca9612a?v=8fe37c2453d947639765419575f97c54)
 
----
 # 👥 멤버
-| 신예진 | 신현철 | 이지영 | 김정현 |
-|:---:|:---------:|:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/65756225/208081193-b340e86a-eb8e-431c-a4d1-0716b368d01f.png" width="200px" /> | <img src="https://user-images.githubusercontent.com/65756225/208077417-befedafa-7bc9-475d-88d0-edfd8ceb6de3.jpeg" width="200px" /> | <img src="https://user-images.githubusercontent.com/65756225/208081475-0b5e5188-bef9-4ace-9b02-48360988f57f.png" width="200px" /> | <img src="https://user-images.githubusercontent.com/65756225/208081903-7d75816e-acde-48a4-b476-645e28f2dba4.png" width="200px" /> |
-|[shyjnnn](https://github.com/shyjnnn)|[moonn6pence](https://github.com/moonn6pence) | [jiyoungzero](https://github.com/jiyoungzero) |[CaliSeoul](https://github.com/CaliSeoul)|
-| *React*, *AWS https배포(Docker + NGINX)* | *SpringBoot*, *PostgreSQL* | *Django* | *AI(YOLOv3)* |
+| Design | Back-end | Front-end |
+|:---:|:---------:|:---:|
+|[lywon725](https://github.com/lywon725), [swimkim](https://github.com/swim-kim), [soeun06](https://github.com/soeun06), 서연미 |[Geonhoe Lee](https://github.com/rawfishthelgh), [Sangjune park](https://github.com/tkdwns414), [SeokHwan An](https://github.com/seokhwan-an), [MINJU](https://github.com/JoungMinJu) | [seochan99](https://github.com/seochan99), [shyjnnn](https://github.com/shyjnnn), [leeideal](https://github.com/leeideal), [seulg2027](https://github.com/seulg2027) |
